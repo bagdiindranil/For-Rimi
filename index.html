@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Small Question ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffe4ec,#fff3f7);
+text-align:center;
+position:relative;
+}
+
+.container{
+padding:25px;
+max-width:550px;
+z-index:10;
+}
+
+h1{
+font-size:2rem;
+color:#ff2d55;
+margin-bottom:15px;
+}
+
+.subtitle{
+font-size:1.1rem;
+color:#555;
+line-height:1.6;
+margin-bottom:35px;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+#yes{
+background:#ff4d6d;
+color:white;
+margin-right:10px;
+box-shadow:0 5px 15px rgba(255,77,109,.3);
+}
+
+#yes:hover{
+transform:scale(1.05);
+}
+
+#no{
+background:#6c757d;
+color:white;
+position:absolute;
+left:55%;
+top:60%;
+}
+
+.message{
+margin-top:25px;
+font-weight:bold;
+color:#555;
+min-height:30px;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+opacity:.7;
+animation:floatUp linear forwards;
+pointer-events:none;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-120px);
+opacity:0;
+}
+}
+
+.final-screen{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+height:100vh;
+padding:25px;
+text-align:center;
+}
+
+.final-screen h1{
+font-size:2.2rem;
+margin-bottom:15px;
+}
+
+.final-screen p{
+font-size:1.15rem;
+line-height:1.8;
+color:#444;
+}
+
+.form-box{
+width:320px;
+text-align:left;
+margin-top:20px;
+}
+
+.form-box label{
+display:block;
+margin-bottom:5px;
+font-weight:600;
+}
+
+.form-box input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
+
+.confirm-btn{
+width:100%;
+padding:14px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Rimi, will you go on a bike ride with me in Kolkata? 🏍️❤️
+</h1>
+
+<p class="subtitle">
+Just you, me, Kolkata streets, good conversations,
+a chai stop somewhere, and hopefully a memory worth keeping. ☕✨
+</p>
+
+<button id="yes">
+Yes ❤️
+</button>
+
+<button id="no">
+No 😏
+</button>
+
+<div id="message" class="message"></div>
+
+</div>
+
+<script>
+
+// Floating hearts
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+heart.style.animationDuration=(Math.random()*5+5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},10000);
+}
+
+setInterval(createHeart,400);
+
+// No button messages
+const noBtn=document.getElementById("no");
+const message=document.getElementById("message");
+
+const messages = [
+  "চলো এক কাপ চা খেতে যাই? ☕",
+  "চলো ফুচকা খেতে যাই? 😋",
+  "চলো কোল্ড কফি খেতে যাই? 🥤",
+  "চলো চিকেন চিলি খেতে যাই? 🍗",
+  "চলো আইসক্রিম খেতে যাই? 🍨",
+  "আচ্ছা, এত না বলছো কেন? একটু ভেবে দেখো না! 😊",
+  "একটা সুযোগ তো দিতেই পারো... কী বলো? ❤️"
+];
+
+let attempt=0;
+
+function moveNoButton(){
+
+attempt++;
+
+message.innerText=
+messages[Math.min(attempt-1,messages.length-1)];
+
+const maxX=window.innerWidth-noBtn.offsetWidth-20;
+const maxY=window.innerHeight-noBtn.offsetHeight-20;
+
+const x=Math.random()*maxX;
+const y=Math.random()*maxY;
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseenter",moveNoButton);
+
+document.addEventListener("touchstart",function(e){
+
+const touch=e.touches[0];
+const rect=noBtn.getBoundingClientRect();
+
+const distance=Math.sqrt(
+Math.pow(touch.clientX-(rect.left+rect.width/2),2)+
+Math.pow(touch.clientY-(rect.top+rect.height/2),2)
+);
+
+if(distance<140){
+moveNoButton();
+}
+
+});
+
+noBtn.addEventListener("click",function(e){
+e.preventDefault();
+moveNoButton();
+});
+
+// Yes button
+
+document.getElementById("yes").addEventListener("click",()=>{
+
+document.body.innerHTML=`
+
+<div class="final-screen">
+
+<h1>Mission Accepted ❤️</h1>
+
+<p>
+🏍️ Rider: Indranil<br>
+🌸 Passenger: Rimi<br>
+🌆 Location: Kolkata
+</p>
+
+<div class="form-box">
+
+<label>Name</label>
+<input type="text" value="Rimi" readonly>
+
+<label>Select Date</label>
+<input type="date" id="rideDate">
+
+<label>Select Time</label>
+<input type="time" id="rideTime">
+
+<button class="confirm-btn" onclick="confirmRide()">
+Confirm Ride ❤️
+</button>
+
+</div>
+
+</div>
+
+`;
+
+window.confirmRide=function(){
+
+const date=document.getElementById("rideDate").value;
+const time=document.getElementById("rideTime").value;
+
+if(!date || !time){
+alert("Please select both date and time ❤️");
+return;
+}
+
+document.body.innerHTML=`
+
+<div class="final-screen">
+
+<h1>Yaaay ❤️</h1>
+
+<p>
+Date Confirmed 🎉<br><br>
+
+🌸 Rimi<br>
+🏍️ Indranil<br><br>
+
+📅 ${date}<br>
+⏰ ${time}<br><br>
+
+See you on the ride ✨❤️
+</p>
+
+</div>
+
+`;
+
+};
+
+});
+
+</script>
+
+</body>
+</html>
