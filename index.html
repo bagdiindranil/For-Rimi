@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +8,10 @@
 <title>The Conversation That Disappeared</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -23,1675 +19,1438 @@ html{
 }
 
 body{
-    background:#08080d;
-    color:#eeeeee;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, #18233b 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #24152f 0%, transparent 35%),
+        #080b12;
+    color:#f4f4f4;
+    min-height:100vh;
     overflow-x:hidden;
 }
 
-
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
-body::before{
+body:before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(255,255,255,.06),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 85% 75%,
-            rgba(130,130,180,.05),
-            transparent 30%
-        );
-
-    z-index:-2;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-
     background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.18) 1px,
-            transparent 1px
-        );
-
-    background-size:120px 120px;
-    opacity:.15;
-    z-index:-1;
+        radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
+    background-size:45px 45px;
+    opacity:.18;
 }
 
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-/* =========================================================
-   PAGE / SCENE SYSTEM
-========================================================= */
+.container{
+    width:min(900px,92%);
+    margin:auto;
+}
 
 .scene{
     min-height:100vh;
-    width:100%;
-
-    display:none;
-
-    padding:60px 20px;
-
+    padding:80px 0;
+    display:flex;
     align-items:center;
-    justify-content:center;
 }
 
-
-/* First screen is visible by default */
-
-#start{
-    display:flex;
-}
-
-
-/*
-   THIS IS THE IMPORTANT PART.
-
-   When a scene is selected through an anchor such as:
-
-   #chapter1
-
-   only that scene becomes visible.
-*/
-
-.scene:target{
-    display:flex;
-}
-
-
-/*
-   When ANY scene is targeted, hide the default intro.
-*/
-
-body:has(.scene:target) #start{
-    display:none;
-}
-
-
-/*
-   Hide other scenes when one is selected.
-*/
-
-body:has(.scene:target) .scene:not(:target){
-    display:none;
-}
-
-
-.container{
+.card{
     width:100%;
-    max-width:900px;
-    margin:auto;
+    background:rgba(15,19,30,.88);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
+    backdrop-filter:blur(12px);
 }
 
 .center{
     text-align:center;
 }
 
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
 .kicker{
-    font-size:11px;
+    font-size:12px;
     letter-spacing:4px;
-    color:#777777;
-    margin-bottom:22px;
+    color:#9ba7bd;
+    margin-bottom:18px;
+    font-weight:bold;
 }
 
 h1{
-    font-size:clamp(42px,9vw,86px);
+    font-size:clamp(40px,8vw,78px);
     line-height:.95;
-    margin-bottom:28px;
-
-    background:linear-gradient(
-        120deg,
-        #ffffff,
-        #777777
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    margin-bottom:24px;
 }
 
 h2{
-    font-size:clamp(34px,6vw,60px);
-    line-height:1;
-    margin-bottom:22px;
+    font-size:clamp(30px,6vw,52px);
+    margin-bottom:20px;
 }
 
 h3{
+    font-size:22px;
     margin-bottom:12px;
 }
 
 p{
-    color:#aaaaaa;
+    color:#b9c0cf;
     line-height:1.8;
+    font-size:16px;
 }
 
-strong{
-    color:#eeeeee;
+.big-text{
+    font-size:20px;
+    line-height:1.8;
+    color:#dce1eb;
 }
 
-.small{
-    color:#666666;
-    font-size:12px;
+.highlight{
+    color:white;
+    font-weight:bold;
 }
 
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-    max-width:680px;
-    margin:0 auto 35px;
-    font-size:17px;
+.muted{
+    color:#7e8798;
 }
-
-.loader{
-    width:min(500px,90%);
-    margin:35px auto;
-}
-
-.progress-track{
-    width:100%;
-    height:6px;
-
-    background:#222228;
-
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-fill{
-    width:0%;
-    height:100%;
-
-    background:#eeeeee;
-
-    animation:
-        loading 4s
-        cubic-bezier(.2,.7,.3,1)
-        forwards;
-}
-
-@keyframes loading{
-
-    0%{
-        width:0%;
-    }
-
-    15%{
-        width:18%;
-    }
-
-    35%{
-        width:43%;
-    }
-
-    55%{
-        width:61%;
-    }
-
-    75%{
-        width:78%;
-    }
-
-    90%{
-        width:94%;
-    }
-
-    100%{
-        width:100%;
-    }
-}
-
-
-/*
-   This percentage is visual only.
-   It doesn't control navigation.
-*/
-
-.loading-number{
-    margin-top:12px;
-
-    font-family:monospace;
-    color:#777777;
-}
-
-
-/* =========================================================
-   UNIVERSAL LINKS / BUTTONS
-========================================================= */
 
 .button{
     display:inline-block;
-
+    margin-top:28px;
     padding:15px 24px;
-
-    border:1px solid #444444;
-    border-radius:8px;
-
-    background:#111116;
-
-    color:#ffffff;
-
-    text-decoration:none;
-
-    font-size:13px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;
+    background:#f2f2f2;
+    color:#0b0d12;
     font-weight:bold;
-    letter-spacing:1px;
-
-    transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease,
-        border-color .25s ease;
+    transition:.25s;
 }
 
 .button:hover{
-    background:#ffffff;
-    color:#08080d;
-    border-color:#ffffff;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(255,255,255,.15);
 }
 
-
-/*
-   This is the crucial replacement for onclick.
-
-   It is a normal HTML link:
-
-   href="#chapter1"
-
-   So it works without JavaScript.
-*/
-
-.start-button{
-    margin-top:5px;
-    padding:17px 30px;
+.button.dark{
+    background:#161c29;
+    color:#f2f2f2;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.nav{
-    text-align:center;
-    margin-top:45px;
+.button.red{
+    background:#29171d;
+    color:#ffb9c5;
+    border-color:#61313d;
 }
 
-.nav .button{
-    margin:5px;
+.progress{
+    height:8px;
+    background:#202633;
+    border-radius:20px;
+    overflow:hidden;
+    margin:35px auto 10px;
+    max-width:550px;
 }
 
+.progress span{
+    display:block;
+    height:100%;
+    width:0;
+    background:#e7e7e7;
+    animation:loading 4s forwards;
+}
 
-/* =========================================================
-   CHAT
-========================================================= */
+@keyframes loading{
+    0%{width:0}
+    25%{width:23%}
+    50%{width:51%}
+    75%{width:76%}
+    100%{width:100%}
+}
+
+.loading-number{
+    font-size:13px;
+    color:#818b9e;
+}
 
 .chat{
-    max-width:650px;
-    margin:35px auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin:30px 0;
 }
 
-.message{
-    max-width:80%;
-    padding:15px 18px;
-
-    margin:13px 0;
-
-    border-radius:15px;
-
-    line-height:1.55;
+.bubble{
+    max-width:75%;
+    padding:14px 18px;
+    border-radius:18px;
+    line-height:1.5;
 }
 
-.message.left{
-    background:#202027;
-    border-bottom-left-radius:3px;
+.bubble.boy{
+    align-self:flex-start;
+    background:#182132;
+    border-bottom-left-radius:4px;
 }
 
-.message.right{
-    background:#303038;
-    border-bottom-right-radius:3px;
-    margin-left:auto;
+.bubble.girl{
+    align-self:flex-end;
+    background:#29202e;
+    border-bottom-right-radius:4px;
 }
 
 .label{
     display:block;
-
-    color:#666666;
-
-    font-size:9px;
-
+    font-size:10px;
     letter-spacing:2px;
-
+    color:#818b9e;
     margin-bottom:5px;
 }
 
-
-/* =========================================================
-   CHARACTER CARDS
-========================================================= */
-
 .characters{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:1fr 1fr;
     gap:25px;
-
-    margin-top:40px;
+    margin-top:30px;
 }
 
 .character{
-    border:1px solid #292930;
-
-    background:
-        rgba(255,255,255,.03);
-
+    background:#101620;
+    border:1px solid rgba(255,255,255,.08);
     border-radius:20px;
-
-    padding:30px;
-
+    padding:28px;
     text-align:center;
 }
 
-
-/* =========================================================
-   CSS CHARACTER DRAWINGS
-========================================================= */
-
-.person{
-    width:110px;
-    height:150px;
-
+.avatar{
+    width:100px;
+    height:100px;
     margin:0 auto 20px;
-
     position:relative;
-}
-
-.person-head{
-    width:55px;
-    height:55px;
-
-    background:#aaaaaa;
-
     border-radius:50%;
-
-    margin:auto;
-
-    position:relative;
+    background:#252d3c;
 }
 
-.person-head::after{
+.avatar:before{
     content:"";
-
     position:absolute;
-
-    width:8px;
-    height:8px;
-
+    width:42px;
+    height:42px;
     border-radius:50%;
-
-    background:#333333;
-
-    left:17px;
-    top:24px;
-
-    box-shadow:
-        18px 0 0 #333333;
+    background:#c99776;
+    left:29px;
+    top:17px;
 }
 
-.person-body{
-    width:75px;
-    height:80px;
-
-    background:#555555;
-
-    border-radius:
-        30px
-        30px
-        8px
-        8px;
-
-    margin:-2px auto 0;
+.avatar:after{
+    content:"";
+    position:absolute;
+    width:65px;
+    height:34px;
+    border-radius:50px 50px 20px 20px;
+    background:#343c4d;
+    left:18px;
+    bottom:12px;
 }
 
-.person-girl .person-head{
-    border-radius:
-        48%
-        48%
-        44%
-        44%;
+.girl-avatar{
+    background:#292532;
 }
 
-.person-girl .person-body{
-    width:80px;
+.girl-avatar:before{
+    background:#d2a17e;
 }
 
-
-/* =========================================================
-   ACTIVITY
-========================================================= */
-
-.activity{
-    max-width:700px;
-
-    margin:40px auto;
-
-    padding:30px;
-
-    border:
-        1px solid
-        #292930;
-
-    border-radius:18px;
-
-    background:
-        rgba(255,255,255,.03);
+.girl-avatar:after{
+    background:#4b3448;
 }
-
-.activity-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:13px;
-}
-
-.activity-number{
-    font-family:monospace;
-    font-size:24px;
-}
-
-.activity-track{
-    width:100%;
-    height:10px;
-
-    background:#222222;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.activity-fill{
-    width:100%;
-    height:100%;
-
-    background:#dddddd;
-
-    animation:
-        conversationDrop
-        4s
-        ease
-        forwards;
-}
-
-@keyframes conversationDrop{
-
-    0%{
-        width:100%;
-    }
-
-    20%{
-        width:82%;
-    }
-
-    40%{
-        width:63%;
-    }
-
-    60%{
-        width:43%;
-    }
-
-    80%{
-        width:19%;
-    }
-
-    100%{
-        width:0%;
-    }
-}
-
-
-/* =========================================================
-   TIMELINE
-========================================================= */
 
 .timeline{
-    display:grid;
-    gap:12px;
+    margin-top:30px;
+    border-left:2px solid #303849;
+    padding-left:25px;
 }
 
-.timeline-item{
-    display:flex;
-
-    gap:20px;
-
-    padding:20px;
-
-    border-left:
-        2px solid
-        #444444;
-
-    background:
-        rgba(255,255,255,.025);
+.event{
+    margin-bottom:30px;
+    position:relative;
 }
 
-.phase{
-    min-width:75px;
-
-    color:#666666;
-
-    font-family:monospace;
-
-    font-size:11px;
+.event:before{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:#dce1eb;
+    border-radius:50%;
+    left:-31px;
+    top:6px;
 }
 
+.event small{
+    color:#737e91;
+    letter-spacing:2px;
+}
 
-/* =========================================================
-   CASE FILE
-========================================================= */
-
-.case{
-    margin-top:35px;
-
-    border:
-        1px solid
-        #292930;
-
-    border-radius:15px;
-
+.meter{
+    margin:25px 0;
+    background:#202633;
+    height:16px;
+    border-radius:20px;
     overflow:hidden;
 }
 
-.case-row{
-    display:grid;
-
-    grid-template-columns:
-        40%
-        60%;
-
-    border-bottom:
-        1px solid
-        #25252b;
-}
-
-.case-row:last-child{
-    border-bottom:0;
-}
-
-.case-row div{
-    padding:17px;
-}
-
-.case-row div:first-child{
-    color:#666666;
-
-    background:
-        rgba(255,255,255,.025);
-}
-
-
-/* =========================================================
-   THEORY CARDS
-========================================================= */
-
-.theories{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    margin:35px 0;
-}
-
-.theory{
-    border:
-        1px solid
-        #292930;
-
-    border-radius:15px;
-
-    padding:25px;
-
-    background:
-        rgba(255,255,255,.025);
-}
-
-.icon{
-    font-size:27px;
-    margin-bottom:14px;
-}
-
-
-/* =========================================================
-   THEORY CHOICES
-========================================================= */
-
-.choice-area{
-    text-align:center;
-    margin-top:35px;
-}
-
-.choice{
-    display:inline-block;
-
-    margin:5px;
-
-    padding:13px 18px;
-
-    border:
-        1px solid
-        #444444;
-
-    border-radius:8px;
-
-    color:#eeeeee;
-
-    text-decoration:none;
-
-    background:#111116;
-
-    font-size:12px;
-}
-
-.choice:hover{
-    background:#ffffff;
-    color:#08080d;
-}
-
-
-/*
-   Pure CSS response system.
-
-   Each response is hidden.
-   :target makes the chosen one visible.
-*/
-
-.response{
-    display:none;
-
-    max-width:650px;
-
-    margin:25px auto;
-
-    padding:23px;
-
-    border:
-        1px solid
-        #333333;
-
-    border-radius:15px;
-
-    background:
-        rgba(255,255,255,.04);
-}
-
-.response:target{
+.meter span{
     display:block;
+    height:100%;
+    width:100%;
+    background:#cfd5df;
+    animation:drop 4s forwards;
 }
 
+@keyframes drop{
+    0%{width:100%}
+    25%{width:78%}
+    50%{width:53%}
+    75%{width:27%}
+    100%{width:4%}
+}
 
-/* =========================================================
-   TERMINAL
-========================================================= */
+.file{
+    display:grid;
+    grid-template-columns:190px 1fr;
+    gap:12px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    padding:14px 0;
+}
 
-.terminal{
-    margin:30px 0;
+.file strong{
+    color:#dfe4ed;
+}
 
+.file span{
+    color:#8e98aa;
+}
+
+.possibilities{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-top:30px;
+}
+
+.reason{
+    padding:22px;
+    background:#111722;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
+}
+
+.reason-number{
+    color:#687387;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.choice-box{
+    margin-top:30px;
+    padding:30px;
+    border-radius:20px;
+    background:#101620;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.choice-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.choice-buttons a{
+    padding:14px 20px;
+    border-radius:999px;
+    border:1px solid #394254;
+    color:#dce1eb;
+    background:#171d29;
+    font-weight:bold;
+}
+
+.choice-buttons a:hover{
+    background:#222a39;
+}
+
+.verdict{
+    margin-top:25px;
+    padding:22px;
+    border-left:3px solid #cfd5df;
+    background:#111722;
+}
+
+.no-route{
+    margin-top:30px;
     padding:25px;
-
-    background:#050507;
-
-    border:
-        1px solid
-        #292930;
-
-    border-radius:12px;
-
-    font-family:monospace;
-
-    color:#888888;
-
-    line-height:2;
+    border-radius:18px;
+    background:#261b1e;
+    border:1px solid #53343b;
 }
 
-.terminal strong{
-    color:#dddddd;
+.case-board{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:30px;
 }
 
+.suspect{
+    padding:25px;
+    background:#111722;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.08);
+}
 
-/* =========================================================
-   FINAL
-========================================================= */
+.clear{
+    color:#a9e1bd;
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
 
-.stamp{
+.question{
+    font-size:25px;
+    margin:20px 0;
+    color:#fff;
+}
+
+.final-box{
+    text-align:center;
+    padding:35px;
+    margin-top:30px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    background:#101620;
+}
+
+.status{
     display:inline-block;
-
-    border:
-        2px solid
-        #777777;
-
-    padding:12px 20px;
-
-    letter-spacing:3px;
-
-    transform:rotate(-3deg);
-
-    margin-bottom:30px;
+    margin:10px;
+    padding:9px 14px;
+    border-radius:999px;
+    background:#191f2b;
+    color:#aeb7c7;
+    font-size:12px;
+    letter-spacing:1px;
 }
 
-.final-text{
-    max-width:700px;
-
-    margin:25px auto;
-
-    font-size:19px;
-
-    line-height:1.9;
+.footer{
+    text-align:center;
+    padding:60px 20px;
+    color:#626c7e;
+    font-size:13px;
 }
 
-.credits{
-    max-width:650px;
+@media(max-width:650px){
 
-    margin:45px auto 0;
-
-    padding-top:30px;
-
-    border-top:
-        1px solid
-        #222222;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:700px){
-
-    .scene{
-        padding:
-            45px
-            16px;
+    .card{
+        padding:26px 20px;
     }
 
     .characters,
-    .theories{
+    .possibilities,
+    .case-board{
         grid-template-columns:1fr;
     }
 
-    .case-row{
+    .file{
         grid-template-columns:1fr;
+        gap:5px;
     }
 
-    .message{
-        max-width:90%;
+    .bubble{
+        max-width:88%;
     }
 
-    .timeline-item{
-        gap:12px;
-    }
-
-    .phase{
-        min-width:65px;
+    .scene{
+        padding:50px 0;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
+<!-- ========================================================= -->
+<!-- INTRO -->
+<!-- ========================================================= -->
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+<section class="scene" id="start">
+<div class="container">
+<div class="card center">
 
-<section
-    class="scene"
-    id="start"
->
+<div class="kicker">A COMPLETELY UNNECESSARY INVESTIGATION</div>
 
-<div class="container center">
+<h1>The Conversation<br>That Disappeared.</h1>
 
-<div class="kicker">
-A COMPLETELY UNNECESSARY INVESTIGATION
-</div>
-
-<h1>
-The Conversation<br>
-That Disappeared
-</h1>
-
-<p class="intro">
-
-Once upon a time, two people used to talk.
-
+<p class="big-text">
+Two people.<br>
+A normal conversation.<br>
+And then...
 <br><br>
-
-Nothing particularly dramatic.
-Nothing suspicious.
-
-<br>
-
-Just random conversations,
-unnecessary questions,
-occasional nonsense...
-
-<br><br>
-
-And then somehow...
-
-<br>
-
-<strong>
-they stopped talking.
-</strong>
-
+<strong>Nothing.</strong>
 </p>
 
-
-<div class="loader">
-
-<div class="progress-track">
-
-<div class="progress-fill"></div>
-
+<div class="progress">
+<span></span>
 </div>
 
 <div class="loading-number">
-0% → 100% — preparing investigation
+INVESTIGATION INITIALISING...
 </div>
 
-</div>
-
-
-<!-- =================================================
-     THE IMPORTANT BUTTON
-
-     NO JAVASCRIPT.
-     NO ONCLICK.
-     NO EVENT LISTENER.
-
-     JUST A NORMAL HTML LINK.
-================================================= -->
-
-<a
-    href="#chapter1"
-    class="button start-button"
->
+<a href="#chapter1" class="button">
 FIND OUT WHAT HAPPENED →
 </a>
 
-
-<p
-    class="small"
-    style="margin-top:20px;"
->
-Warning: investigation may contain unnecessary overthinking.
-</p>
-
 </div>
-
+</div>
 </section>
 
 
+<!-- ========================================================= -->
+<!-- CHAPTER 1 -->
+<!-- ========================================================= -->
 
-<!-- =====================================================
-     CHAPTER 1
-===================================================== -->
-
-<section
-    class="scene"
-    id="chapter1"
->
-
+<section class="scene" id="chapter1">
 <div class="container">
+<div class="card">
 
-<div class="kicker">
-CHAPTER 01
-</div>
+<div class="kicker">CHAPTER 01</div>
 
-<h2>
-Once, There Were Conversations.
-</h2>
+<h2>Let's Start From The Beginning.</h2>
 
-<p>
-Before the silence, there was something very ordinary:
-people talking.
+<p class="big-text">
+No previous theories.<br>
+No complicated explanations.<br>
+No detective pretending to know everything.
 </p>
 
+<br>
+
+<p>
+For the purpose of this investigation, we are going to assume
+something very simple:
+</p>
+
+<br>
+
+<p class="big-text">
+<strong>Two people were talking.</strong>
+</p>
 
 <div class="chat">
 
-<div class="message left">
-
-<span class="label">
-BOY
-</span>
-
-Random question...
-why does everyone suddenly become productive
-at 2 AM?
-
+<div class="bubble boy">
+<span class="label">BOY</span>
+"Okay but why are we even talking about this?"
 </div>
 
-
-<div class="message right">
-
-<span class="label">
-GIRL
-</span>
-
-Because apparently that's when the brain
-decides to cooperate.
-
+<div class="bubble girl">
+<span class="label">GIRL</span>
+"Because you started it."
 </div>
 
-
-<div class="message left">
-
-<span class="label">
-BOY
-</span>
-
-So the brain has office hours now?
-
+<div class="bubble boy">
+<span class="label">BOY</span>
+"That's actually a very weak argument."
 </div>
 
-
-<div class="message right">
-
-<span class="label">
-GIRL
-</span>
-
-Apparently 😂
-
-</div>
-
-
-<div class="message left">
-
-<span class="label">
-BOY
-</span>
-
-Good to know.
-I'll file a complaint.
-
+<div class="bubble girl">
+<span class="label">GIRL</span>
+"Still an argument."
 </div>
 
 </div>
 
-
-<p class="center">
-
-There were questions.
-<br>
-
-There were replies.
-<br>
-
-There were completely unnecessary conversations.
-
-<br><br>
-
-Basically...
-
-<strong>
-normal human behaviour.
-</strong>
-
+<p>
+And somehow, completely unnecessary conversations became
+completely normal.
 </p>
 
-
-<div class="nav">
-
-<a
-    href="#chapter2"
-    class="button"
->
-CONTINUE →
+<a href="#chapter2" class="button">
+CONTINUE THE INVESTIGATION →
 </a>
 
 </div>
-
 </div>
-
 </section>
 
 
+<!-- ========================================================= -->
+<!-- CHAPTER 2 -->
+<!-- ========================================================= -->
 
-<!-- =====================================================
-     CHAPTER 2
-===================================================== -->
-
-<section
-    class="scene"
-    id="chapter2"
->
-
+<section class="scene" id="chapter2">
 <div class="container">
+<div class="card">
 
-<div class="kicker">
-CHAPTER 02
-</div>
+<div class="kicker">CHAPTER 02</div>
 
-<h2>
-The Two Characters
-</h2>
+<h2>The Two People In Question.</h2>
 
 <p>
-Every investigation needs suspects.
-
-<br>
-
-Technically, these are just two people.
-
-<br>
-
-But let's make this unnecessarily official.
+Every investigation needs subjects.
+Unfortunately, these two volunteered without knowing it.
 </p>
-
 
 <div class="characters">
 
-
 <div class="character">
 
-<div class="person">
+<div class="avatar"></div>
 
-<div class="person-head"></div>
-<div class="person-body"></div>
-
-</div>
-
-<h3>
-THE BOY
-</h3>
+<h3>SUBJECT A</h3>
 
 <p>
-
-Asks random questions.
+Talks when there is something to say.
 <br>
-
-Talks more than necessary.
+Talks when there is nothing to say.
 <br>
-
-Occasionally overthinks absolutely everything.
-
+Sometimes thinks too much.
+<br>
+Occasionally turns a simple situation into a full investigation.
 </p>
 
 </div>
 
 
-
 <div class="character">
 
-<div class="person person-girl">
+<div class="avatar girl-avatar"></div>
 
-<div class="person-head"></div>
-<div class="person-body"></div>
-
-</div>
-
-<h3>
-THE GIRL
-</h3>
+<h3>SUBJECT B</h3>
 
 <p>
-
-Can have perfectly normal conversations.
+Perfectly capable of normal conversation.
 <br>
-
-Can suddenly become extremely busy.
+Can be extremely straightforward.
 <br>
-
-Possesses an impressive ability to remain unpredictable.
-
+Can also become mysteriously unavailable.
+<br>
+May or may not know what is going on.
 </p>
 
 </div>
 
 </div>
-
-
-<div class="nav">
-
-<a
-    href="#chapter3"
-    class="button"
->
-NEXT CHAPTER →
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CHAPTER 3
-===================================================== -->
-
-<section
-    class="scene"
-    id="chapter3"
->
-
-<div class="container">
-
-<div class="kicker">
-CHAPTER 03
-</div>
-
-<h2>
-Then Something Changed.
-</h2>
-
-<p>
-
-There wasn't a dramatic announcement.
-
-<br>
-
-No official meeting.
-
-<br>
-
-No press conference.
-
-<br>
-
-No background music.
 
 <br><br>
 
-The conversations simply...
-
-<br>
-
-<strong>
-became less frequent.
-</strong>
-
+<p class="center big-text">
+<strong>Neither subject appears particularly suspicious.</strong>
 </p>
 
-
-<div class="activity">
-
-<div class="activity-header">
-
-<span>
-CONVERSATION ACTIVITY
-</span>
-
-<span class="activity-number">
-100% → 0%
-</span>
+<a href="#chapter3" class="button">
+NEXT EVIDENCE →
+</a>
 
 </div>
-
-
-<div class="activity-track">
-
-<div class="activity-fill"></div>
-
 </div>
+</section>
 
-</div>
 
+<!-- ========================================================= -->
+<!-- CHAPTER 3 -->
+<!-- ========================================================= -->
 
+<section class="scene" id="chapter3">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 03</div>
+
+<h2>Everything Was Normal.</h2>
+
+<p>
+At least according to the available evidence.
+</p>
 
 <div class="timeline">
 
-
-<div class="timeline-item">
-
-<div class="phase">
-PHASE 01
+<div class="event">
+<small>PHASE 01</small>
+<h3>Normal</h3>
+<p>Conversations happening. Random topics appearing. Nobody investigating anything.</p>
 </div>
 
-<div>
+<div class="event">
+<small>PHASE 02</small>
+<h3>Slightly Quieter</h3>
+<p>Messages become less frequent. Still nothing particularly alarming.</p>
+</div>
 
-<strong>
-Normal
-</strong>
+<div class="event">
+<small>PHASE 03</small>
+<h3>Noticeably Quiet</h3>
+<p>The investigator begins noticing the suspicious lack of conversation.</p>
+</div>
 
-<p>
-Messages appeared.
-Replies existed.
-Everything was functioning normally.
+<div class="event">
+<small>PHASE 04</small>
+<h3>Silence</h3>
+<p>And suddenly the conversation seems to have taken an unscheduled holiday.</p>
+</div>
+
+</div>
+
+<div class="meter">
+<span></span>
+</div>
+
+<p class="center">
+CONVERSATION ACTIVITY: <strong>100% → 4%</strong>
 </p>
 
-</div>
+<a href="#chapter4" class="button">
+OPEN THE CASE FILE →
+</a>
 
 </div>
-
-
-
-<div class="timeline-item">
-
-<div class="phase">
-PHASE 02
 </div>
+</section>
 
-<div>
 
-<strong>
-Slightly Quieter
-</strong>
+<!-- ========================================================= -->
+<!-- CHAPTER 4 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter4">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 04</div>
+
+<h2>The Missing File.</h2>
 
 <p>
-Messages started taking longer.
-Nobody panicked.
-Yet.
+The investigator checked everything.
+Unfortunately, the file was extremely unhelpful.
 </p>
 
+<div style="margin-top:30px">
+
+<div class="file">
+<strong>Last known status</strong>
+<span>Everything seemed normal.</span>
+</div>
+
+<div class="file">
+<strong>Last confirmed conversation</strong>
+<span>Information unavailable.</span>
+</div>
+
+<div class="file">
+<strong>Reason for silence</strong>
+<span>Unknown.</span>
+</div>
+
+<div class="file">
+<strong>Who stopped talking?</strong>
+<span>Investigation inconclusive.</span>
+</div>
+
+<div class="file">
+<strong>Dramatic explanation</strong>
+<span>Not found.</span>
+</div>
+
+<div class="file">
+<strong>Secret villain</strong>
+<span>Apparently unavailable for questioning.</span>
 </div>
 
 </div>
 
+<br>
 
+<p class="big-text center">
+So far, the investigation had discovered exactly one thing:
+<br><br>
+<strong>It had discovered nothing.</strong>
+</p>
 
-<div class="timeline-item">
+<a href="#chapter5" class="button">
+KEEP INVESTIGATING →
+</a>
 
-<div class="phase">
-PHASE 03
 </div>
+</div>
+</section>
 
-<div>
 
-<strong>
-Noticeably Quiet
-</strong>
+<!-- ========================================================= -->
+<!-- CHAPTER 5 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter5">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 05</div>
+
+<h2>Possible Explanations.</h2>
 
 <p>
-The conversation started resembling
-a very slow-loading webpage.
+Before accusing anyone, the investigator decided to consider
+the obvious possibilities.
 </p>
 
+<div class="possibilities">
+
+<div class="reason">
+<div class="reason-number">01</div>
+<h3>Life Happened</h3>
+<p>
+Classes, work, family, responsibilities, random problems...
+life has a suspicious habit of appearing at inconvenient times.
+</p>
+</div>
+
+<div class="reason">
+<div class="reason-number">02</div>
+<h3>Bad Timing</h3>
+<p>
+One person is free when the other isn't.
+Then the situation reverses.
+Perfect timing apparently went on leave.
+</p>
+</div>
+
+<div class="reason">
+<div class="reason-number">03</div>
+<h3>Overthinking</h3>
+<p>
+"Should I text?"
+"Maybe later."
+"Maybe they're busy."
+And suddenly three days have passed.
+</p>
+</div>
+
+<div class="reason">
+<div class="reason-number">04</div>
+<h3>The Universe</h3>
+<p>
+No evidence.
+No witnesses.
+Still somehow suspicious.
+</p>
+</div>
+
+<div class="reason">
+<div class="reason-number">05</div>
+<h3>Nobody Knows</h3>
+<p>
+A surprisingly strong possibility.
+Sometimes there genuinely isn't one simple reason.
+</p>
+</div>
+
+<div class="reason">
+<div class="reason-number">06</div>
+<h3>Both Became Busy</h3>
+<p>
+The most boring explanation...
+which unfortunately makes it one of the most believable.
+</p>
 </div>
 
 </div>
 
+<a href="#chapter6" class="button">
+THE INVESTIGATION CONTINUES →
+</a>
 
-
-<div class="timeline-item">
-
-<div class="phase">
-PHASE 04
 </div>
+</div>
+</section>
 
-<div>
 
-<strong>
-Silence
-</strong>
+<!-- ========================================================= -->
+<!-- CHAPTER 6 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter6">
+<div class="container">
+<div class="card center">
+
+<div class="kicker">CHAPTER 06</div>
+
+<h2>But First...</h2>
+
+<p class="big-text">
+Before we continue the investigation,
+there is one extremely important question.
+</p>
+
+<div class="choice-box">
+
+<div class="question">
+Do we start the investigation properly?
+</div>
 
 <p>
-And then...
-
-nothing.
+No assumptions.<br>
+No blaming anyone.<br>
+Just facts, evidence and a completely unnecessary amount of detective work.
 </p>
 
-</div>
+<div class="choice-buttons">
 
-</div>
+<a href="#chapter7">
+YES — LET'S GO 🔎
+</a>
 
-</div>
-
-
-<div class="nav">
-
-<a
-    href="#chapter4"
-    class="button"
->
-CONTINUE →
+<a href="#no-route">
+NO.
 </a>
 
 </div>
 
 </div>
 
+</div>
+</div>
 </section>
 
 
+<!-- ========================================================= -->
+<!-- NO ROUTE -->
+<!-- ========================================================= -->
 
-<!-- =====================================================
-     CHAPTER 4
-===================================================== -->
-
-<section
-    class="scene"
-    id="chapter4"
->
-
+<section class="scene" id="no-route">
 <div class="container">
+<div class="card center">
 
-<div class="kicker">
-CHAPTER 04
-</div>
+<div class="kicker">INVESTIGATION INTERRUPTED</div>
 
-<h2>
-The Sudden Silence
-</h2>
+<h2>Oh.</h2>
 
-<p>
-
-The investigation reached its first major problem:
-
-<br>
-
-there wasn't actually a clear ending.
-
+<p class="big-text">
+So we're choosing <strong>NO</strong>.
 </p>
 
+<div class="no-route">
 
-<div class="case">
-
-
-<div class="case-row">
-
-<div>
-LAST KNOWN STATUS
-</div>
-
-<div>
-Everything seemed normal.
-</div>
-
-</div>
-
-
-<div class="case-row">
-
-<div>
-LAST CONFIRMED CONVERSATION
-</div>
-
-<div>
-Unknown.
-</div>
-
-</div>
-
-
-<div class="case-row">
-
-<div>
-CAUSE OF SILENCE
-</div>
-
-<div>
-Unknown.
-</div>
-
-</div>
-
-
-<div class="case-row">
-
-<div>
-WHO DECIDED TO STOP?
-</div>
-
-<div>
-Investigation inconclusive.
-</div>
-
-</div>
-
-
-<div class="case-row">
-
-<div>
-DRAMATIC REASON
-</div>
-
-<div>
-Not found.
-</div>
-
-</div>
-
-
-<div class="case-row">
-
-<div>
-OFFICIAL EXPLANATION
-</div>
-
-<div>
-Currently unavailable.
-</div>
-
-</div>
-
-</div>
-
-
-<p
-    class="center"
-    style="margin-top:30px;"
->
-
-Sometimes life simply gets noisy.
+<h3>Interesting decision.</h3>
 
 <br>
 
-Studies.
-Family.
-Responsibilities.
-Random problems.
-Bad timing.
-Busy schedules.
+<p>
+Unfortunately, the investigation department has a strict policy.
+If you refuse to cooperate...
+</p>
+
+<br>
+
+<p class="big-text">
+<strong>
+You are officially sentenced to one extremely annoying morning.
+</strong>
+</p>
+
+<br>
+
+<p>
+The investigator will simply become your alarm clock,
+announce "WAKE UP, SUSPECT" approximately seventeen times,
+and remain dramatically disappointed until you get up.
+</p>
+
+<br>
+
+<p>
+No actual water attacks.
+We're detectives, not villains. 😭
+</p>
+
+</div>
+
+<a href="#chapter7" class="button">
+FINE. LET'S INVESTIGATE. 🔎
+</a>
+
+</div>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- CHAPTER 7 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter7">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 07</div>
+
+<h2>Now The Real Investigation Begins.</h2>
+
+<p class="big-text">
+The question is no longer:
+<br>
+<strong>"Why did they stop talking?"</strong>
+</p>
+
+<br>
+
+<p class="big-text">
+The question is:
+<br>
+<strong>"Who actually has the problem here?"</strong>
+</p>
+
+<div class="case-board">
+
+<div class="suspect">
+<div class="clear">SUSPECT A</div>
+<h3>HIM</h3>
+<p>
+Possible problem:
+Overthinking.
+<br>
+Waiting for the right moment.
+<br>
+Analyzing completely normal situations like a detective.
+</p>
+</div>
+
+<div class="suspect">
+<div class="clear">SUSPECT B</div>
+<h3>HER</h3>
+<p>
+Possible problem:
+Being unpredictable.
+<br>
+Getting busy.
+<br>
+Possibly having absolutely no idea this investigation exists.
+</p>
+</div>
+
+<div class="suspect">
+<div class="clear">SUSPECT C</div>
+<h3>LIFE</h3>
+<p>
+Possible problem:
+Being unnecessarily complicated.
+<br>
+Always bringing something else to deal with.
+</p>
+</div>
+
+<div class="suspect">
+<div class="clear">SUSPECT D</div>
+<h3>TIMING</h3>
+<p>
+Possible problem:
+Being terrible.
+<br>
+Consistently terrible.
+<br>
+Suspiciously terrible.
+</p>
+</div>
+
+</div>
+
+<a href="#chapter8" class="button">
+QUESTION THE SUSPECTS →
+</a>
+
+</div>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- CHAPTER 8 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter8">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 08</div>
+
+<h2>The Interrogation.</h2>
+
+<div class="choice-box">
+
+<h3>QUESTION 01</h3>
+
+<p class="question">
+"Did you intentionally stop talking?"
+</p>
+
+<div class="verdict">
+<strong>HIM:</strong>
+<br><br>
+"Not exactly."
+<br><br>
+<strong>INVESTIGATOR:</strong>
+"Then why did you wait?"
+<br><br>
+<strong>HIM:</strong>
+"...Next question."
+</div>
+
+<br>
+
+<div class="verdict">
+<strong>HER:</strong>
+<br><br>
+"Life got busy."
+<br><br>
+<strong>INVESTIGATOR:</strong>
+"Fair enough."
+<br><br>
+<strong>SYSTEM:</strong>
+"That was surprisingly easy."
+</div>
+
+</div>
+
+<div class="choice-box">
+
+<h3>QUESTION 02</h3>
+
+<p class="question">
+"Was anyone trying to hurt anyone?"
+</p>
+
+<div class="verdict center">
+
+<strong>NO EVIDENCE FOUND.</strong>
 
 <br><br>
 
-Not every silence comes with
-a dramatic explanation.
-
+<p>
+The investigation has found no convincing evidence
+that either person was trying to create a problem.
 </p>
 
+</div>
 
-<div class="nav">
+</div>
 
-<a
-    href="#chapter5"
-    class="button"
->
-EXAMINE THE EVIDENCE →
+<a href="#chapter9" class="button">
+NEXT QUESTION →
 </a>
 
 </div>
-
 </div>
-
 </section>
 
 
+<!-- ========================================================= -->
+<!-- CHAPTER 9 -->
+<!-- ========================================================= -->
 
-<!-- =====================================================
-     CHAPTER 5
-===================================================== -->
-
-<section
-    class="scene"
-    id="chapter5"
->
-
+<section class="scene" id="chapter9">
 <div class="container">
+<div class="card center">
 
-<div class="kicker">
-CHAPTER 05
-</div>
+<div class="kicker">CHAPTER 09</div>
 
-<h2>
-Possible Explanations
-</h2>
+<h2>The Unexpected Discovery.</h2>
 
-<p>
-
-The investigation produced several theories.
+<p class="big-text">
+The investigator had been looking for a person to blame.
+</p>
 
 <br>
 
-None of them were particularly satisfying.
+<p class="big-text">
+Instead...
+<br><br>
+<strong>the situation itself became the prime suspect.</strong>
+</p>
+
+<div class="choice-box">
+
+<h3>THE SITUATION</h3>
+
+<p>
+Charges include:
+</p>
 
 <br>
 
-Which probably means they're realistic.
-
+<p>
+• Bad timing<br>
+• Busy schedules<br>
+• Miscommunication<br>
+• Overthinking<br>
+• Waiting<br>
+• Unspoken assumptions<br>
+• Random circumstances<br>
+• And making something simple unnecessarily complicated
 </p>
 
+<br>
 
-<div class="theories">
-
-
-<div class="theory">
-
-<div class="icon">
-📚
-</div>
-
-<h3>
-Life Happened
-</h3>
+<strong>VERDICT:</strong>
 
 <p>
-Studies, family, responsibilities,
-random life problems...
-
-Life has terrible timing.
+Guilty of being complicated.
+<br>
+Not guilty of anything specific.
 </p>
 
 </div>
 
+<a href="#chapter10" class="button">
+THIS CASE GETS WEIRDER →
+</a>
 
-
-<div class="theory">
-
-<div class="icon">
-⏳
 </div>
+</div>
+</section>
 
-<h3>
-Timing
-</h3>
+
+<!-- ========================================================= -->
+<!-- CHAPTER 10 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter10">
+<div class="container">
+<div class="card">
+
+<div class="kicker">CHAPTER 10</div>
+
+<h2>The Reconstruction.</h2>
 
 <p>
-Sometimes people simply end up
-living at different speeds.
+The investigator decided to reconstruct how a perfectly normal
+conversation could disappear without anyone officially ending it.
+</p>
+
+<div class="timeline">
+
+<div class="event">
+<small>DAY 01</small>
+<h3>Everything Normal.</h3>
+<p>People talk. Things are simple.</p>
+</div>
+
+<div class="event">
+<small>DAY 02</small>
+<h3>Still Normal.</h3>
+<p>Nothing suspicious detected.</p>
+</div>
+
+<div class="event">
+<small>DAY 03</small>
+<h3>Someone Gets Busy.</h3>
+<p>"I'll reply later."</p>
+</div>
+
+<div class="event">
+<small>DAY 04</small>
+<h3>Later Becomes Later.</h3>
+<p>Time passes.</p>
+</div>
+
+<div class="event">
+<small>DAY 05</small>
+<h3>The Other Person Notices.</h3>
+<p>"Maybe they're busy."</p>
+</div>
+
+<div class="event">
+<small>DAY 06</small>
+<h3>Nobody Does Anything.</h3>
+<p>Because apparently that was the plan nobody planned.</p>
+</div>
+
+<div class="event">
+<small>DAY 07</small>
+<h3>The Conversation Disappears.</h3>
+<p>No dramatic ending. Just... silence.</p>
+</div>
+
+</div>
+
+<a href="#chapter11" class="button">
+OPEN FINAL REPORT →
+</a>
+
+</div>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- CHAPTER 11 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter11">
+<div class="container">
+<div class="card center">
+
+<div class="kicker">CHAPTER 11</div>
+
+<h2>Nobody Is Guilty.</h2>
+
+<p class="big-text">
+After reviewing all available evidence...
+</p>
+
+<div class="final-box">
+
+<p>
+<strong>WAS HE WRONG?</strong>
+<br>
+Maybe sometimes.
+</p>
+
+<br>
+
+<p>
+<strong>WAS SHE WRONG?</strong>
+<br>
+Maybe sometimes.
+</p>
+
+<br>
+
+<p>
+<strong>WAS SOMEONE THE VILLAIN?</strong>
+<br>
+Absolutely not.
+</p>
+
+<br>
+
+<p>
+<strong>WAS SOMEONE TRYING TO END EVERYTHING?</strong>
+<br>
+No convincing evidence.
+</p>
+
+<br>
+
+<p>
+<strong>THEN WHO DID IT?</strong>
+<br><br>
+<span style="font-size:25px;color:white;">
+Nobody.
+</span>
+
+</div>
+
+<br>
+
+<p class="big-text">
+Sometimes nobody does anything wrong.
+<br>
+Things just become complicated.
+</p>
+
+<a href="#chapter12" class="button">
+ONE LAST THING →
+</a>
+
+</div>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- CHAPTER 12 -->
+<!-- ========================================================= -->
+
+<section class="scene" id="chapter12">
+<div class="container">
+<div class="card center">
+
+<div class="kicker">FINAL CHAPTER</div>
+
+<h2>The Case Remains Open.</h2>
+
+<p class="big-text">
+No villain was found.
+<br>
+No guilty person was identified.
+<br>
+No dramatic explanation was discovered.
+</p>
+
+<br>
+
+<p>
+Just two people who once had conversations...
+and somehow ended up not having them anymore.
+</p>
+
+<div class="final-box">
+
+<span class="status">CASE: OPEN</span>
+<span class="status">CULPRIT: UNKNOWN</span>
+<span class="status">BLAME: NONE</span>
+<span class="status">EXPLANATION: LOADING...</span>
+
+<br><br>
+
+<h3>FINAL INVESTIGATOR'S NOTE</h3>
+
+<br>
+
+<p>
+"Maybe the conversation ended."
+<br><br>
+"Maybe it didn't."
+<br><br>
+"Maybe it is simply waiting for the most random topic imaginable
+to restart itself."
+</p>
+
+<br>
+
+<p class="muted">
+And honestly...
+that would be the most fitting ending for this investigation.
 </p>
 
 </div>
 
+<br><br>
 
-
-<div class="theory">
-
-<div class="icon">
-🧠
-</div>
-
-<h3>
-Overthinking
-</h3>
-
-<p>
-"Should I text?"
-"Maybe I shouldn't."
-
-And suddenly...
-silence.
+<p class="big-text">
+<strong>
+CASE CLOSED?
+<br>
+Not quite.
+</strong>
 </p>
 
-</div>
-
-
-
-<div class="theory">
-
-<div class="icon">
-🌌
-</div>
-
-<h3>
-The Universe
-</h3>
-
-<p>
-No evidence.
-No explanation.
-
-Very convenient theory.
-</p>
+<a href="#start" class="button">
+↻ START FROM THE BEGINNING
+</a>
 
 </div>
+</div>
+</section>
 
 
-
-<div class="theory">
-
-<div class="icon">
-❓
+<div class="footer">
+THE END — OR POSSIBLY JUST ANOTHER UNNECESSARY CHAPTER.
 </div>
 
-<h3>
-Nobody Knows
-</h3>
-
-<p>
-Possibly the most honest answer
-in the entire investigation.
-</p>
-
-</div>
-
-
-
-<div class="theory">
-
-<div class="icon">
-😂
-</div>
-
-<h3>
-Both Got Busy
-</h3>
-
-<p>
-One day becomes two.
-Two becomes five.
+</body>
+</html>
+```
