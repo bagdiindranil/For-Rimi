@@ -8,6 +8,11 @@
 <title>The Conversation That Disappeared</title>
 
 <style>
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -59,7 +64,7 @@ a{
 
 .card{
     width:100%;
-    background:rgba(15,19,30,.88);
+    background:rgba(15,19,30,.90);
     border:1px solid rgba(255,255,255,.09);
     border-radius:24px;
     padding:40px;
@@ -107,14 +112,13 @@ p{
     color:#dce1eb;
 }
 
-.highlight{
-    color:white;
-    font-weight:bold;
-}
-
 .muted{
     color:#7e8798;
 }
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .button{
     display:inline-block;
@@ -143,6 +147,10 @@ p{
     color:#ffb9c5;
     border-color:#61313d;
 }
+
+/* =========================================================
+   LOADING
+========================================================= */
 
 .progress{
     height:8px;
@@ -173,6 +181,10 @@ p{
     font-size:13px;
     color:#818b9e;
 }
+
+/* =========================================================
+   CHAT
+========================================================= */
 
 .chat{
     display:flex;
@@ -207,6 +219,10 @@ p{
     color:#818b9e;
     margin-bottom:5px;
 }
+
+/* =========================================================
+   CHARACTERS
+========================================================= */
 
 .characters{
     display:grid;
@@ -266,6 +282,10 @@ p{
     background:#4b3448;
 }
 
+/* =========================================================
+   TIMELINE
+========================================================= */
+
 .timeline{
     margin-top:30px;
     border-left:2px solid #303849;
@@ -293,6 +313,10 @@ p{
     letter-spacing:2px;
 }
 
+/* =========================================================
+   METER
+========================================================= */
+
 .meter{
     margin:25px 0;
     background:#202633;
@@ -317,6 +341,10 @@ p{
     100%{width:4%}
 }
 
+/* =========================================================
+   FILES
+========================================================= */
+
 .file{
     display:grid;
     grid-template-columns:190px 1fr;
@@ -332,6 +360,10 @@ p{
 .file span{
     color:#8e98aa;
 }
+
+/* =========================================================
+   POSSIBILITIES
+========================================================= */
 
 .possibilities{
     display:grid;
@@ -353,6 +385,10 @@ p{
     letter-spacing:2px;
     margin-bottom:12px;
 }
+
+/* =========================================================
+   CHOICES
+========================================================= */
 
 .choice-box{
     margin-top:30px;
@@ -377,11 +413,17 @@ p{
     color:#dce1eb;
     background:#171d29;
     font-weight:bold;
+    transition:.2s;
 }
 
 .choice-buttons a:hover{
+    transform:translateY(-2px);
     background:#222a39;
 }
+
+/* =========================================================
+   VERDICT
+========================================================= */
 
 .verdict{
     margin-top:25px;
@@ -397,6 +439,10 @@ p{
     background:#261b1e;
     border:1px solid #53343b;
 }
+
+/* =========================================================
+   CASE BOARD
+========================================================= */
 
 .case-board{
     display:grid;
@@ -425,6 +471,10 @@ p{
     color:#fff;
 }
 
+/* =========================================================
+   FINAL BOX
+========================================================= */
+
 .final-box{
     text-align:center;
     padding:35px;
@@ -445,12 +495,225 @@ p{
     letter-spacing:1px;
 }
 
+/* =========================================================
+   =========================================================
+   NEW INTERACTIVE MOOD INVESTIGATION
+   =========================================================
+========================================================= */
+
+.mood-stage{
+    margin:35px auto;
+    max-width:650px;
+    padding:35px 20px;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.06), transparent 50%),
+        #0d121c;
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.mood-face{
+    font-size:105px;
+    line-height:1;
+    display:inline-block;
+    filter:drop-shadow(0 15px 20px rgba(0,0,0,.35));
+    animation:floatFace 2.5s ease-in-out infinite;
+}
+
+@keyframes floatFace{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-8px) rotate(1deg);
+    }
+}
+
+.mood-name{
+    margin-top:18px;
+    font-size:18px;
+    letter-spacing:3px;
+    font-weight:bold;
+}
+
+.mood-level{
+    margin:14px auto 0;
+    max-width:400px;
+    height:10px;
+    background:#252c39;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.mood-level span{
+    display:block;
+    height:100%;
+    border-radius:20px;
+    background:#d6dbe4;
+}
+
+.mood-stats{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.stat{
+    padding:9px 14px;
+    border-radius:999px;
+    background:#181e29;
+    color:#9da7b8;
+    font-size:12px;
+}
+
+/* =========================================================
+   MOOD BUTTONS
+========================================================= */
+
+.mood-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin-top:25px;
+}
+
+.mood-button{
+    padding:14px 18px;
+    border-radius:999px;
+    border:1px solid #394254;
+    background:#171d29;
+    color:#e1e5ec;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.mood-button:hover{
+    transform:translateY(-3px) scale(1.02);
+    background:#242c3b;
+}
+
+/* =========================================================
+   BOY COMEBACK MODE
+========================================================= */
+
+.comeback{
+    margin-top:35px;
+    padding:30px;
+    border-radius:22px;
+    background:
+        linear-gradient(145deg,#101824,#15111b);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.comeback-title{
+    font-size:12px;
+    letter-spacing:4px;
+    color:#9ba7bd;
+    margin-bottom:12px;
+}
+
+.comeback-face{
+    font-size:65px;
+    margin:10px 0 20px;
+    animation:determined 1.5s ease-in-out infinite;
+}
+
+@keyframes determined{
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-4px);
+    }
+
+    75%{
+        transform:translateX(4px);
+    }
+}
+
+.comeback-line{
+    font-size:18px;
+    line-height:1.7;
+    color:#dfe4ed;
+}
+
+.mission{
+    margin-top:20px;
+    padding:15px;
+    border-radius:14px;
+    background:#191f2a;
+    color:#9ea8ba;
+}
+
+/* =========================================================
+   REACTION BOXES
+========================================================= */
+
+.reaction{
+    margin-top:25px;
+    padding:25px;
+    border-radius:18px;
+    background:#111722;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.reaction .emoji{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.reaction strong{
+    color:#fff;
+}
+
+/* =========================================================
+   MOOD END
+========================================================= */
+
+.happy-ending{
+    margin-top:30px;
+    padding:35px;
+    border-radius:25px;
+    background:
+        radial-gradient(circle at center,rgba(255,255,255,.08),transparent 65%),
+        #101722;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.happy-emojis{
+    font-size:55px;
+    letter-spacing:8px;
+    margin-bottom:20px;
+}
+
+.confetti{
+    font-size:25px;
+    letter-spacing:5px;
+    margin:20px 0;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 .footer{
     text-align:center;
     padding:60px 20px;
     color:#626c7e;
     font-size:13px;
 }
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:650px){
 
@@ -476,23 +739,41 @@ p{
     .scene{
         padding:50px 0;
     }
+
+    .mood-face{
+        font-size:85px;
+    }
+
+    .mood-button{
+        width:100%;
+    }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- ========================================================= -->
-<!-- INTRO -->
-<!-- ========================================================= -->
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
 
 <section class="scene" id="start">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">A COMPLETELY UNNECESSARY INVESTIGATION</div>
+<div class="kicker">
+A COMPLETELY UNNECESSARY INVESTIGATION
+</div>
 
-<h1>The Conversation<br>That Disappeared.</h1>
+<h1>
+The Conversation<br>
+That Disappeared.
+</h1>
 
 <p class="big-text">
 Two people.<br>
@@ -515,21 +796,29 @@ FIND OUT WHAT HAPPENED →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 1 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 1
+========================================================= -->
 
 <section class="scene" id="chapter1">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 01</div>
+<div class="kicker">
+CHAPTER 01
+</div>
 
-<h2>Let's Start From The Beginning.</h2>
+<h2>
+Let's Start From The Beginning.
+</h2>
 
 <p class="big-text">
 No previous theories.<br>
@@ -547,7 +836,9 @@ something very simple:
 <br>
 
 <p class="big-text">
-<strong>Two people were talking.</strong>
+<strong>
+Two people were talking.
+</strong>
 </p>
 
 <div class="chat">
@@ -584,21 +875,29 @@ CONTINUE THE INVESTIGATION →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 2 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 2
+========================================================= -->
 
 <section class="scene" id="chapter2">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 02</div>
+<div class="kicker">
+CHAPTER 02
+</div>
 
-<h2>The Two People In Question.</h2>
+<h2>
+The Two People In Question.
+</h2>
 
 <p>
 Every investigation needs subjects.
@@ -611,7 +910,9 @@ Unfortunately, these two volunteered without knowing it.
 
 <div class="avatar"></div>
 
-<h3>SUBJECT A</h3>
+<h3>
+SUBJECT A
+</h3>
 
 <p>
 Talks when there is something to say.
@@ -630,7 +931,9 @@ Occasionally turns a simple situation into a full investigation.
 
 <div class="avatar girl-avatar"></div>
 
-<h3>SUBJECT B</h3>
+<h3>
+SUBJECT B
+</h3>
 
 <p>
 Perfectly capable of normal conversation.
@@ -649,7 +952,9 @@ May or may not know what is going on.
 <br><br>
 
 <p class="center big-text">
-<strong>Neither subject appears particularly suspicious.</strong>
+<strong>
+Neither subject appears particularly suspicious.
+</strong>
 </p>
 
 <a href="#chapter3" class="button">
@@ -657,21 +962,29 @@ NEXT EVIDENCE →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 3 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 3
+========================================================= -->
 
 <section class="scene" id="chapter3">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 03</div>
+<div class="kicker">
+CHAPTER 03
+</div>
 
-<h2>Everything Was Normal.</h2>
+<h2>
+Everything Was Normal.
+</h2>
 
 <p>
 At least according to the available evidence.
@@ -682,25 +995,36 @@ At least according to the available evidence.
 <div class="event">
 <small>PHASE 01</small>
 <h3>Normal</h3>
-<p>Conversations happening. Random topics appearing. Nobody investigating anything.</p>
+<p>
+Conversations happening. Random topics appearing.
+Nobody investigating anything.
+</p>
 </div>
 
 <div class="event">
 <small>PHASE 02</small>
 <h3>Slightly Quieter</h3>
-<p>Messages become less frequent. Still nothing particularly alarming.</p>
+<p>
+Messages become less frequent.
+Still nothing particularly alarming.
+</p>
 </div>
 
 <div class="event">
 <small>PHASE 03</small>
 <h3>Noticeably Quiet</h3>
-<p>The investigator begins noticing the suspicious lack of conversation.</p>
+<p>
+The investigator begins noticing the suspicious lack of conversation.
+</p>
 </div>
 
 <div class="event">
 <small>PHASE 04</small>
 <h3>Silence</h3>
-<p>And suddenly the conversation seems to have taken an unscheduled holiday.</p>
+<p>
+And suddenly the conversation seems to have taken
+an unscheduled holiday.
+</p>
 </div>
 
 </div>
@@ -710,7 +1034,8 @@ At least according to the available evidence.
 </div>
 
 <p class="center">
-CONVERSATION ACTIVITY: <strong>100% → 4%</strong>
+CONVERSATION ACTIVITY:
+<strong>100% → 4%</strong>
 </p>
 
 <a href="#chapter4" class="button">
@@ -718,21 +1043,29 @@ OPEN THE CASE FILE →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 4 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 4
+========================================================= -->
 
 <section class="scene" id="chapter4">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 04</div>
+<div class="kicker">
+CHAPTER 04
+</div>
 
-<h2>The Missing File.</h2>
+<h2>
+The Missing File.
+</h2>
 
 <p>
 The investigator checked everything.
@@ -778,7 +1111,9 @@ Unfortunately, the file was extremely unhelpful.
 <p class="big-text center">
 So far, the investigation had discovered exactly one thing:
 <br><br>
-<strong>It had discovered nothing.</strong>
+<strong>
+It had discovered nothing.
+</strong>
 </p>
 
 <a href="#chapter5" class="button">
@@ -786,21 +1121,29 @@ KEEP INVESTIGATING →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 5 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 5
+========================================================= -->
 
 <section class="scene" id="chapter5">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 05</div>
+<div class="kicker">
+CHAPTER 05
+</div>
 
-<h2>Possible Explanations.</h2>
+<h2>
+Possible Explanations.
+</h2>
 
 <p>
 Before accusing anyone, the investigator decided to consider
@@ -874,21 +1217,29 @@ THE INVESTIGATION CONTINUES →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 6 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 6
+========================================================= -->
 
 <section class="scene" id="chapter6">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">CHAPTER 06</div>
+<div class="kicker">
+CHAPTER 06
+</div>
 
-<h2>But First...</h2>
+<h2>
+But First...
+</h2>
 
 <p class="big-text">
 Before we continue the investigation,
@@ -904,7 +1255,8 @@ Do we start the investigation properly?
 <p>
 No assumptions.<br>
 No blaming anyone.<br>
-Just facts, evidence and a completely unnecessary amount of detective work.
+Just facts, evidence and a completely unnecessary
+amount of detective work.
 </p>
 
 <div class="choice-buttons">
@@ -922,21 +1274,29 @@ NO.
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- NO ROUTE -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     NO ROUTE
+========================================================= -->
 
 <section class="scene" id="no-route">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">INVESTIGATION INTERRUPTED</div>
+<div class="kicker">
+INVESTIGATION INTERRUPTED
+</div>
 
-<h2>Oh.</h2>
+<h2>
+Oh.
+</h2>
 
 <p class="big-text">
 So we're choosing <strong>NO</strong>.
@@ -944,7 +1304,9 @@ So we're choosing <strong>NO</strong>.
 
 <div class="no-route">
 
-<h3>Interesting decision.</h3>
+<h3>
+Interesting decision.
+</h3>
 
 <br>
 
@@ -964,7 +1326,7 @@ You are officially sentenced to one extremely annoying morning.
 <br>
 
 <p>
-The investigator will simply become your alarm clock,
+The investigator will become your alarm clock,
 announce "WAKE UP, SUSPECT" approximately seventeen times,
 and remain dramatically disappointed until you get up.
 </p>
@@ -983,26 +1345,36 @@ FINE. LET'S INVESTIGATE. 🔎
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 7 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 7
+========================================================= -->
 
 <section class="scene" id="chapter7">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 07</div>
+<div class="kicker">
+CHAPTER 07
+</div>
 
-<h2>Now The Real Investigation Begins.</h2>
+<h2>
+Now The Real Investigation Begins.
+</h2>
 
 <p class="big-text">
 The question is no longer:
 <br>
-<strong>"Why did they stop talking?"</strong>
+<strong>
+"Why did they stop talking?"
+</strong>
 </p>
 
 <br>
@@ -1010,7 +1382,9 @@ The question is no longer:
 <p class="big-text">
 The question is:
 <br>
-<strong>"Who actually has the problem here?"</strong>
+<strong>
+"Who actually has the problem here?"
+</strong>
 </p>
 
 <div class="case-board">
@@ -1024,7 +1398,7 @@ Overthinking.
 <br>
 Waiting for the right moment.
 <br>
-Analyzing completely normal situations like a detective.
+Trying too hard to fix everything.
 </p>
 </div>
 
@@ -1035,7 +1409,7 @@ Analyzing completely normal situations like a detective.
 Possible problem:
 Being unpredictable.
 <br>
-Getting busy.
+Having moods that require their own investigation department.
 <br>
 Possibly having absolutely no idea this investigation exists.
 </p>
@@ -1067,66 +1441,831 @@ Suspiciously terrible.
 
 </div>
 
-<a href="#chapter8" class="button">
-QUESTION THE SUSPECTS →
+<a href="#mood1" class="button">
+ENTER THE MOOD INVESTIGATION →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 8 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     NEW INTERACTIVE SECTION
+========================================================= -->
+
+<section class="scene" id="mood1">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+SPECIAL INVESTIGATION FILE
+</div>
+
+<h2>
+THE MOOD MYSTERY.
+</h2>
+
+<p class="big-text">
+The investigation has discovered a second problem.
+<br><br>
+
+The conversation isn't the only thing that disappeared.
+<br>
+
+<strong>
+Apparently, the mood did too.
+</strong>
+</p>
+
+
+<div class="mood-stage">
+
+<div class="mood-face">
+😡
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 100%
+</div>
+
+<div class="mood-level">
+<span style="width:100%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+ANGER: EXTREME
+</div>
+
+<div class="stat">
+PATIENCE: 2%
+</div>
+
+<div class="stat">
+SMILE: NOT FOUND
+</div>
+
+</div>
+
+</div>
+
+
+<div class="comeback">
+
+<div class="comeback-title">
+BOY STATUS
+</div>
+
+<div class="comeback-face">
+🧍‍♂️🔄
+</div>
+
+<div class="comeback-line">
+<strong>COME BACK MODE: ACTIVATED.</strong>
+<br><br>
+Mission objective:
+<strong>make her smile again.</strong>
+</div>
+
+<div class="mission">
+Current strategy:
+Trying everything except giving up.
+</div>
+
+</div>
+
+
+<div class="reaction">
+
+<div class="emoji">
+😳
+</div>
+
+<p>
+<strong>INVESTIGATOR:</strong>
+"Are you sure this is a good idea?"
+</p>
+
+<br>
+
+<p>
+<strong>BOY:</strong>
+"Absolutely not."
+</p>
+
+<br>
+
+<p>
+<strong>INVESTIGATOR:</strong>
+"Then why are you doing it?"
+</p>
+
+<br>
+
+<p>
+<strong>BOY:</strong>
+"Because apparently that's the mission now."
+</p>
+
+</div>
+
+
+<a href="#mood2" class="button">
+TRY TO LOWER THE ANGER →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 2
+========================================================= -->
+
+<section class="scene" id="mood2">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 02
+</div>
+
+<h2>
+Attempt #1.
+</h2>
+
+<p class="big-text">
+Step one of the Comeback Plan:
+<br>
+<strong>
+Try to make her laugh.
+</strong>
+</p>
+
+<div class="mood-stage">
+
+<div class="mood-face">
+😤
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 82%
+</div>
+
+<div class="mood-level">
+<span style="width:82%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+EGO: HIGH
+</div>
+
+<div class="stat">
+PATIENCE: 12%
+</div>
+
+<div class="stat">
+SMILE: LOADING...
+</div>
+
+</div>
+
+</div>
+
+<div class="comeback">
+
+<div class="comeback-face">
+🧍‍♂️💭
+</div>
+
+<p class="comeback-line">
+"Okay... joke carefully."
+<br><br>
+"One wrong joke and the investigation becomes a crime documentary."
+</p>
+
+</div>
+
+<div class="choice-buttons">
+
+<a href="#mood3">
+MAKE A STUPID JOKE 😂
+</a>
+
+<a href="#mood3">
+ACT NORMAL FOR ONCE 😭
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 3
+========================================================= -->
+
+<section class="scene" id="mood3">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 03
+</div>
+
+<h2>
+Unexpected Development.
+</h2>
+
+<p class="big-text">
+The joke was questionable.
+<br>
+The timing was questionable.
+<br>
+The investigator is questioning the entire operation.
+</p>
+
+<div class="mood-stage">
+
+<div class="mood-face">
+🙄
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 65%
+</div>
+
+<div class="mood-level">
+<span style="width:65%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+ANGER: FALLING
+</div>
+
+<div class="stat">
+EYE ROLL: ACTIVE
+</div>
+
+<div class="stat">
+SMILE: POSSIBLE
+</div>
+
+</div>
+
+</div>
+
+<div class="reaction">
+
+<div class="emoji">
+🙄
+</div>
+
+<p>
+<strong>GIRL:</strong>
+"That was not funny."
+</p>
+
+<br>
+
+<p>
+<strong>BOY:</strong>
+"But you reacted."
+</p>
+
+<br>
+
+<p>
+<strong>GIRL:</strong>
+"That doesn't mean anything."
+</p>
+
+<br>
+
+<p>
+<strong>SYSTEM:</strong>
+"Investigator notes: reaction successfully detected."
+</p>
+
+</div>
+
+<a href="#mood4" class="button">
+MISSION CONTINUES →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 4
+========================================================= -->
+
+<section class="scene" id="mood4">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 04
+</div>
+
+<h2>
+COME BACK MODE: 60%
+</h2>
+
+<p class="big-text">
+The boy has now realised something important.
+<br><br>
+
+Trying too hard to fix a mood...
+<br>
+might actually make the mood worse.
+</p>
+
+<div class="mood-stage">
+
+<div class="mood-face">
+😑
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 48%
+</div>
+
+<div class="mood-level">
+<span style="width:48%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+ANGER: MODERATE
+</div>
+
+<div class="stat">
+EGO: COOLING
+</div>
+
+<div class="stat">
+SMILE: 48%
+</div>
+
+</div>
+
+</div>
+
+<div class="comeback">
+
+<div class="comeback-face">
+🧍‍♂️🫡
+</div>
+
+<p class="comeback-line">
+New strategy:
+<br><br>
+<strong>
+Stop trying to win the argument.
+<br>
+Start trying to win the smile.
+</strong>
+</p>
+
+<div class="mission">
+COMEBACK MODE:
+Listening > arguing
+<br>
+Humour > overthinking
+<br>
+Patience > panic
+</div>
+
+</div>
+
+<a href="#mood5" class="button">
+TRY THE NEW STRATEGY →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 5
+========================================================= -->
+
+<section class="scene" id="mood5">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 05
+</div>
+
+<h2>
+The First Sign Of Peace.
+</h2>
+
+<p class="big-text">
+Something unusual has happened.
+<br><br>
+
+<strong>
+She isn't angry anymore.
+</strong>
+</p>
+
+<div class="mood-stage">
+
+<div class="mood-face">
+🙂
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 25%
+</div>
+
+<div class="mood-level">
+<span style="width:25%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+ANGER: LOW
+</div>
+
+<div class="stat">
+EYE ROLL: REDUCED
+</div>
+
+<div class="stat">
+SMILE: 75%
+</div>
+
+</div>
+
+</div>
+
+<div class="reaction">
+
+<div class="emoji">
+😮
+</div>
+
+<p>
+<strong>INVESTIGATOR:</strong>
+"Wait."
+</p>
+
+<br>
+
+<p>
+"Is that..."
+</p>
+
+<br>
+
+<p class="big-text">
+<strong>A SMILE?</strong>
+</p>
+
+<br>
+
+<p>
+<strong>SYSTEM:</strong>
+"Confirmed."
+</p>
+
+</div>
+
+<div class="choice-buttons">
+
+<a href="#mood6">
+KEEP GOING 😎
+</a>
+
+<a href="#mood6">
+DON'T RUIN IT 😂
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 6
+========================================================= -->
+
+<section class="scene" id="mood6">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 06
+</div>
+
+<h2>
+Mission Almost Complete.
+</h2>
+
+<p class="big-text">
+The situation is now under control.
+<br><br>
+
+The investigator has one final question:
+</p>
+
+<div class="mood-stage">
+
+<div class="mood-face">
+😊
+</div>
+
+<div class="mood-name">
+ANGER LEVEL: 8%
+</div>
+
+<div class="mood-level">
+<span style="width:8%"></span>
+</div>
+
+<div class="mood-stats">
+
+<div class="stat">
+ANGER: ALMOST GONE
+</div>
+
+<div class="stat">
+EGO: OFFLINE
+</div>
+
+<div class="stat">
+HAPPINESS: 92%
+</div>
+
+</div>
+
+</div>
+
+<div class="comeback">
+
+<div class="comeback-face">
+🧍‍♂️🏆
+</div>
+
+<p class="comeback-line">
+COME BACK MODE:
+<strong>SUCCESS IMMINENT.</strong>
+</p>
+
+<div class="mission">
+The boy has survived:
+<br>
+The silence.
+<br>
+The confusion.
+<br>
+The overthinking.
+<br>
+And approximately 47 imaginary scenarios.
+</div>
+
+</div>
+
+<a href="#mood7" class="button">
+ONE FINAL MOVE →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MOOD 7 — HAPPY
+========================================================= -->
+
+<section class="scene" id="mood7">
+
+<div class="container">
+
+<div class="card center">
+
+<div class="kicker">
+MOOD LEVEL 07 — FINAL
+</div>
+
+<h2>
+CASE: MOOD RECOVERED.
+</h2>
+
+<p class="big-text">
+After extensive investigation...
+<br><br>
+
+The impossible has happened.
+</p>
+
+<div class="happy-ending">
+
+<div class="happy-emojis">
+😂 🙂 😄
+</div>
+
+<h3>
+SHE'S HAPPY AGAIN.
+</h3>
+
+<br>
+
+<p>
+ANGER LEVEL:
+<strong>0%</strong>
+</p>
+
+<br>
+
+<p>
+EGO MODE:
+<strong>OFF</strong>
+</p>
+
+<br>
+
+<p>
+SMILE:
+<strong>FULLY OPERATIONAL</strong>
+</p>
+
+<div class="confetti">
+✨ 🎉 ✨ 🎉 ✨
+</div>
+
+</div>
+
+<br>
+
+<div class="reaction">
+
+<div class="emoji">
+🧍‍♂️😮‍💨
+</div>
+
+<p>
+<strong>BOY:</strong>
+"Finally."
+</p>
+
+<br>
+
+<p>
+<strong>INVESTIGATOR:</strong>
+"You look exhausted."
+</p>
+
+<br>
+
+<p>
+<strong>BOY:</strong>
+"That doesn't matter."
+</p>
+
+<br>
+
+<p>
+<strong>INVESTIGATOR:</strong>
+"Why?"
+</p>
+
+<br>
+
+<p>
+<strong>BOY:</strong>
+"Mission completed."
+</p>
+
+</div>
+
+<a href="#chapter8" class="button">
+RETURN TO THE INVESTIGATION →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     CHAPTER 8
+========================================================= -->
 
 <section class="scene" id="chapter8">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 08</div>
+<div class="kicker">
+CHAPTER 08
+</div>
 
-<h2>The Interrogation.</h2>
+<h2>
+The Interrogation.
+</h2>
 
 <div class="choice-box">
 
-<h3>QUESTION 01</h3>
+<h3>
+QUESTION 01
+</h3>
 
 <p class="question">
 "Did you intentionally stop talking?"
 </p>
 
 <div class="verdict">
+
 <strong>HIM:</strong>
 <br><br>
 "Not exactly."
 <br><br>
+
 <strong>INVESTIGATOR:</strong>
 "Then why did you wait?"
 <br><br>
+
 <strong>HIM:</strong>
 "...Next question."
+
 </div>
 
 <br>
 
 <div class="verdict">
+
 <strong>HER:</strong>
 <br><br>
 "Life got busy."
 <br><br>
+
 <strong>INVESTIGATOR:</strong>
 "Fair enough."
 <br><br>
+
 <strong>SYSTEM:</strong>
 "That was surprisingly easy."
+
 </div>
 
 </div>
 
 <div class="choice-box">
 
-<h3>QUESTION 02</h3>
+<h3>
+QUESTION 02
+</h3>
 
 <p class="question">
 "Was anyone trying to hurt anyone?"
@@ -1134,7 +2273,9 @@ QUESTION THE SUSPECTS →
 
 <div class="verdict center">
 
-<strong>NO EVIDENCE FOUND.</strong>
+<strong>
+NO EVIDENCE FOUND.
+</strong>
 
 <br><br>
 
@@ -1152,21 +2293,29 @@ NEXT QUESTION →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 9 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 9
+========================================================= -->
 
 <section class="scene" id="chapter9">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">CHAPTER 09</div>
+<div class="kicker">
+CHAPTER 09
+</div>
 
-<h2>The Unexpected Discovery.</h2>
+<h2>
+The Unexpected Discovery.
+</h2>
 
 <p class="big-text">
 The investigator had been looking for a person to blame.
@@ -1177,12 +2326,17 @@ The investigator had been looking for a person to blame.
 <p class="big-text">
 Instead...
 <br><br>
-<strong>the situation itself became the prime suspect.</strong>
+
+<strong>
+the situation itself became the prime suspect.
+</strong>
 </p>
 
 <div class="choice-box">
 
-<h3>THE SITUATION</h3>
+<h3>
+THE SITUATION
+</h3>
 
 <p>
 Charges include:
@@ -1198,12 +2352,14 @@ Charges include:
 • Waiting<br>
 • Unspoken assumptions<br>
 • Random circumstances<br>
-• And making something simple unnecessarily complicated
+• Making something simple unnecessarily complicated
 </p>
 
 <br>
 
-<strong>VERDICT:</strong>
+<strong>
+VERDICT:
+</strong>
 
 <p>
 Guilty of being complicated.
@@ -1218,21 +2374,29 @@ THIS CASE GETS WEIRDER →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 10 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 10
+========================================================= -->
 
 <section class="scene" id="chapter10">
+
 <div class="container">
+
 <div class="card">
 
-<div class="kicker">CHAPTER 10</div>
+<div class="kicker">
+CHAPTER 10
+</div>
 
-<h2>The Reconstruction.</h2>
+<h2>
+The Reconstruction.
+</h2>
 
 <p>
 The investigator decided to reconstruct how a perfectly normal
@@ -1243,44 +2407,72 @@ conversation could disappear without anyone officially ending it.
 
 <div class="event">
 <small>DAY 01</small>
-<h3>Everything Normal.</h3>
-<p>People talk. Things are simple.</p>
+<h3>
+Everything Normal.
+</h3>
+<p>
+People talk. Things are simple.
+</p>
 </div>
 
 <div class="event">
 <small>DAY 02</small>
-<h3>Still Normal.</h3>
-<p>Nothing suspicious detected.</p>
+<h3>
+Still Normal.
+</h3>
+<p>
+Nothing suspicious detected.
+</p>
 </div>
 
 <div class="event">
 <small>DAY 03</small>
-<h3>Someone Gets Busy.</h3>
-<p>"I'll reply later."</p>
+<h3>
+Someone Gets Busy.
+</h3>
+<p>
+"I'll reply later."
+</p>
 </div>
 
 <div class="event">
 <small>DAY 04</small>
-<h3>Later Becomes Later.</h3>
-<p>Time passes.</p>
+<h3>
+Later Becomes Later.
+</h3>
+<p>
+Time passes.
+</p>
 </div>
 
 <div class="event">
 <small>DAY 05</small>
-<h3>The Other Person Notices.</h3>
-<p>"Maybe they're busy."</p>
+<h3>
+The Other Person Notices.
+</h3>
+<p>
+"Maybe they're busy."
+</p>
 </div>
 
 <div class="event">
 <small>DAY 06</small>
-<h3>Nobody Does Anything.</h3>
-<p>Because apparently that was the plan nobody planned.</p>
+<h3>
+Nobody Does Anything.
+</h3>
+<p>
+Because apparently that was the plan nobody planned.
+</p>
 </div>
 
 <div class="event">
 <small>DAY 07</small>
-<h3>The Conversation Disappears.</h3>
-<p>No dramatic ending. Just... silence.</p>
+<h3>
+The Conversation Disappears.
+</h3>
+<p>
+No dramatic ending. Just... silence.
+</p>
 </div>
 
 </div>
@@ -1290,21 +2482,29 @@ OPEN FINAL REPORT →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 11 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     CHAPTER 11
+========================================================= -->
 
 <section class="scene" id="chapter11">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">CHAPTER 11</div>
+<div class="kicker">
+CHAPTER 11
+</div>
 
-<h2>Nobody Is Guilty.</h2>
+<h2>
+Nobody Is Guilty.
+</h2>
 
 <p class="big-text">
 After reviewing all available evidence...
@@ -1313,7 +2513,9 @@ After reviewing all available evidence...
 <div class="final-box">
 
 <p>
-<strong>WAS HE WRONG?</strong>
+<strong>
+WAS HE WRONG?
+</strong>
 <br>
 Maybe sometimes.
 </p>
@@ -1321,7 +2523,9 @@ Maybe sometimes.
 <br>
 
 <p>
-<strong>WAS SHE WRONG?</strong>
+<strong>
+WAS SHE WRONG?
+</strong>
 <br>
 Maybe sometimes.
 </p>
@@ -1329,7 +2533,9 @@ Maybe sometimes.
 <br>
 
 <p>
-<strong>WAS SOMEONE THE VILLAIN?</strong>
+<strong>
+WAS SOMEONE THE VILLAIN?
+</strong>
 <br>
 Absolutely not.
 </p>
@@ -1337,7 +2543,9 @@ Absolutely not.
 <br>
 
 <p>
-<strong>WAS SOMEONE TRYING TO END EVERYTHING?</strong>
+<strong>
+WAS SOMEONE TRYING TO END EVERYTHING?
+</strong>
 <br>
 No convincing evidence.
 </p>
@@ -1345,8 +2553,12 @@ No convincing evidence.
 <br>
 
 <p>
-<strong>THEN WHO DID IT?</strong>
+<strong>
+THEN WHO DID IT?
+</strong>
+
 <br><br>
+
 <span style="font-size:25px;color:white;">
 Nobody.
 </span>
@@ -1366,21 +2578,29 @@ ONE LAST THING →
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- CHAPTER 12 -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     FINAL
+========================================================= -->
 
 <section class="scene" id="chapter12">
+
 <div class="container">
+
 <div class="card center">
 
-<div class="kicker">FINAL CHAPTER</div>
+<div class="kicker">
+FINAL CHAPTER
+</div>
 
-<h2>The Case Remains Open.</h2>
+<h2>
+The Case Remains Open.
+</h2>
 
 <p class="big-text">
 No villain was found.
@@ -1399,22 +2619,37 @@ and somehow ended up not having them anymore.
 
 <div class="final-box">
 
-<span class="status">CASE: OPEN</span>
-<span class="status">CULPRIT: UNKNOWN</span>
-<span class="status">BLAME: NONE</span>
-<span class="status">EXPLANATION: LOADING...</span>
+<span class="status">
+CASE: OPEN
+</span>
+
+<span class="status">
+CULPRIT: UNKNOWN
+</span>
+
+<span class="status">
+BLAME: NONE
+</span>
+
+<span class="status">
+MOOD: RECOVERED
+</span>
 
 <br><br>
 
-<h3>FINAL INVESTIGATOR'S NOTE</h3>
+<h3>
+FINAL INVESTIGATOR'S NOTE
+</h3>
 
 <br>
 
 <p>
 "Maybe the conversation ended."
 <br><br>
+
 "Maybe it didn't."
 <br><br>
+
 "Maybe it is simply waiting for the most random topic imaginable
 to restart itself."
 </p>
@@ -1431,11 +2666,13 @@ that would be the most fitting ending for this investigation.
 <br><br>
 
 <p class="big-text">
+
 <strong>
 CASE CLOSED?
 <br>
 Not quite.
 </strong>
+
 </p>
 
 <a href="#start" class="button">
@@ -1443,13 +2680,16 @@ Not quite.
 </a>
 
 </div>
+
 </div>
+
 </section>
 
 
 <div class="footer">
 THE END — OR POSSIBLY JUST ANOTHER UNNECESSARY CHAPTER.
 </div>
+
 
 </body>
 </html>
