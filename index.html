@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ekta Golpo</title>
+<title>Project: Why Are You Like This?</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     margin:0;
@@ -22,6 +27,7 @@ html{
 body{
 
     background:#071118;
+
     color:#f4f6f7;
 
     font-family:
@@ -30,12 +36,13 @@ body{
     serif;
 
     overflow-x:hidden;
+
 }
 
 
-/* =========================
-   CINEMATIC BACKGROUND
-========================= */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 body::before{
 
@@ -46,15 +53,16 @@ body::before{
     inset:0;
 
     background:
+
     radial-gradient(
-        circle at 20% 10%,
-        rgba(90,145,170,.20),
-        transparent 35%
+        circle at 15% 15%,
+        rgba(88,150,180,.20),
+        transparent 32%
     ),
 
     radial-gradient(
-        circle at 85% 80%,
-        rgba(120,90,130,.18),
+        circle at 85% 75%,
+        rgba(150,110,160,.15),
         transparent 35%
     ),
 
@@ -66,6 +74,7 @@ body::before{
     );
 
     z-index:-5;
+
 }
 
 
@@ -78,10 +87,11 @@ body::after{
     inset:0;
 
     background:
+
     repeating-linear-gradient(
         0deg,
-        rgba(255,255,255,.025) 0px,
-        rgba(255,255,255,.025) 1px,
+        rgba(255,255,255,.018) 0px,
+        rgba(255,255,255,.018) 1px,
         transparent 1px,
         transparent 4px
     );
@@ -89,12 +99,13 @@ body::after{
     pointer-events:none;
 
     z-index:100;
+
 }
 
 
-/* =========================
+/* =========================================================
    FLOATING LIGHTS
-========================= */
+========================================================= */
 
 .light{
 
@@ -107,11 +118,13 @@ body::after{
 
     border-radius:50%;
 
-    opacity:.35;
+    opacity:.3;
 
-    animation:float 8s infinite ease-in-out;
+    animation:
+    float 8s infinite ease-in-out;
 
     z-index:-1;
+
 }
 
 .light:nth-child(1){
@@ -148,12 +161,13 @@ body::after{
         transform:translateY(-40px);
         opacity:.5;
     }
+
 }
 
 
-/* =========================
+/* =========================================================
    INTRO
-========================= */
+========================================================= */
 
 #intro{
 
@@ -171,13 +185,15 @@ body::after{
 
 }
 
+
 .intro-content{
 
-    width:min(750px,100%);
+    width:min(800px,100%);
 
-    animation:fadeUp 2s ease;
+    animation:fadeUp 1.5s ease;
 
 }
+
 
 .overline{
 
@@ -187,22 +203,24 @@ body::after{
 
     letter-spacing:6px;
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
 }
+
 
 .intro-title{
 
     font-size:
-    clamp(45px,10vw,90px);
+    clamp(42px,10vw,88px);
 
     font-weight:normal;
 
     letter-spacing:2px;
 
-    margin-bottom:25px;
+    margin-bottom:22px;
 
 }
+
 
 .intro-sub{
 
@@ -214,9 +232,64 @@ body::after{
 
 }
 
+
+.loading-box{
+
+    margin:45px auto 0;
+
+    max-width:500px;
+
+    text-align:left;
+
+}
+
+
+.loading-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#8daeba;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    margin-bottom:9px;
+
+}
+
+
+.loading-bar{
+
+    height:6px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.loading-progress{
+
+    height:100%;
+
+    width:0%;
+
+    background:#bcd7df;
+
+    transition:width .4s ease;
+
+}
+
+
 .enter{
 
-    margin-top:45px;
+    margin-top:40px;
 
     padding:15px 35px;
 
@@ -228,13 +301,14 @@ body::after{
 
     color:white;
 
-    font-size:14px;
+    font-size:13px;
 
     cursor:pointer;
 
     transition:.4s;
 
 }
+
 
 .enter:hover{
 
@@ -247,15 +321,16 @@ body::after{
 }
 
 
-/* =========================
+/* =========================================================
    STORY
-========================= */
+========================================================= */
 
 #story{
 
     display:none;
 
 }
+
 
 .scene{
 
@@ -267,9 +342,10 @@ body::after{
 
     justify-content:center;
 
-    padding:80px 20px;
+    padding:90px 20px;
 
 }
+
 
 .scene-content{
 
@@ -281,9 +357,10 @@ body::after{
 
 }
 
+
 .episode{
 
-    font-size:11px;
+    font-size:10px;
 
     letter-spacing:6px;
 
@@ -292,6 +369,7 @@ body::after{
     margin-bottom:20px;
 
 }
+
 
 .title{
 
@@ -304,9 +382,10 @@ body::after{
 
 }
 
+
 .text{
 
-    max-width:700px;
+    max-width:720px;
 
     margin:auto;
 
@@ -319,83 +398,75 @@ body::after{
 }
 
 
-/* =========================
-   IMAGE CINEMA
-========================= */
+/* =========================================================
+   SYSTEM TERMINAL
+========================================================= */
 
-.image-frame{
+.terminal{
 
-    width:min(850px,100%);
+    max-width:700px;
 
     margin:45px auto;
 
-    position:relative;
+    padding:25px;
 
-    overflow:hidden;
+    background:#050b0f;
 
-    border-radius:4px;
+    border:1px solid rgba(160,200,210,.2);
 
-    box-shadow:
-    0 25px 80px rgba(0,0,0,.6);
-
-}
-
-.image-frame img{
-
-    width:100%;
-
-    display:block;
-
-    transition:
-    transform 8s ease;
-
-}
-
-.image-frame:hover img{
-
-    transform:scale(1.04);
-
-}
-
-.image-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-        to top,
-        rgba(0,0,0,.65),
-        transparent 60%
-    );
-
-}
-
-.caption{
-
-    position:absolute;
-
-    bottom:25px;
-
-    left:25px;
-
-    right:25px;
+    border-radius:12px;
 
     text-align:left;
 
-    font-size:13px;
+    font-family:monospace;
 
-    letter-spacing:2px;
-
-    color:#e8eef0;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.4);
 
 }
 
 
-/* =========================
-   CHARACTER CARDS
-========================= */
+.terminal-top{
+
+    color:#7699a8;
+
+    font-size:11px;
+
+    margin-bottom:18px;
+
+}
+
+
+.terminal-line{
+
+    color:#b9d5dd;
+
+    margin:12px 0;
+
+    line-height:1.6;
+
+}
+
+
+.cursor{
+
+    animation:blink 1s infinite;
+
+}
+
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   BOY / GIRL GRAPHICS
+========================================================= */
 
 .characters{
 
@@ -410,9 +481,10 @@ body::after{
 
 }
 
+
 .character{
 
-    padding:35px 25px;
+    padding:30px 25px;
 
     background:
     rgba(255,255,255,.045);
@@ -420,13 +492,14 @@ body::after{
     border:
     1px solid rgba(180,210,220,.18);
 
-    border-radius:16px;
+    border-radius:18px;
 
     backdrop-filter:blur(8px);
 
     transition:.4s;
 
 }
+
 
 .character:hover{
 
@@ -437,23 +510,134 @@ body::after{
 
 }
 
-.icon{
 
-    font-size:45px;
+.avatar{
 
-    margin-bottom:18px;
+    width:110px;
+
+    height:110px;
+
+    margin:0 auto 20px;
+
+    position:relative;
 
 }
+
+
+.head{
+
+    width:65px;
+
+    height:65px;
+
+    background:#d8b08b;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    left:22px;
+
+    top:15px;
+
+    z-index:2;
+
+}
+
+
+.hair-boy{
+
+    width:68px;
+
+    height:34px;
+
+    background:#25272a;
+
+    border-radius:50% 50% 20% 20%;
+
+    position:absolute;
+
+    left:20px;
+
+    top:10px;
+
+    z-index:3;
+
+}
+
+
+.hair-girl{
+
+    width:78px;
+
+    height:78px;
+
+    background:#29252b;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    left:16px;
+
+    top:9px;
+
+    z-index:1;
+
+}
+
+
+.face{
+
+    position:absolute;
+
+    left:39px;
+
+    top:43px;
+
+    z-index:4;
+
+    font-size:13px;
+
+}
+
+
+.body{
+
+    width:75px;
+
+    height:55px;
+
+    background:#526f7b;
+
+    border-radius:35px 35px 10px 10px;
+
+    position:absolute;
+
+    left:18px;
+
+    top:72px;
+
+}
+
+
+.girl-body{
+
+    background:#705b70;
+
+}
+
 
 .character h3{
 
     letter-spacing:3px;
 
-    font-size:14px;
+    font-size:13px;
 
     margin-bottom:15px;
 
 }
+
 
 .character p{
 
@@ -464,118 +648,80 @@ body::after{
 }
 
 
-/* =========================
-   DIALOGUE
-========================= */
+/* =========================================================
+   STATS
+========================================================= */
 
-.dialogue{
+.stats{
 
-    max-width:650px;
+    max-width:700px;
 
     margin:45px auto;
 
-    padding:30px;
+}
 
-    background:
-    rgba(255,255,255,.035);
 
-    border-left:
-    2px solid #759aaa;
+.stat{
+
+    margin:25px 0;
 
     text-align:left;
 
 }
 
-.speaker{
 
-    font-size:10px;
+.stat-head{
 
-    letter-spacing:4px;
+    display:flex;
 
-    color:#8eb2c1;
+    justify-content:space-between;
 
-    margin-bottom:10px;
+    color:#c7d6da;
 
-}
-
-.dialogue p{
-
-    color:#d4dfe3;
-
-    font-size:19px;
-
-    line-height:1.9;
-
-}
-
-
-/* =========================
-   TIMELINE
-========================= */
-
-.timeline{
-
-    max-width:650px;
-
-    margin:45px auto;
-
-    text-align:left;
-
-}
-
-.timeline-item{
-
-    padding:25px;
-
-    margin:15px 0;
-
-    background:
-    rgba(255,255,255,.035);
-
-    border-left:
-    2px solid #668d9e;
-
-    transition:.4s;
-
-}
-
-.timeline-item:hover{
-
-    transform:translateX(10px);
-
-}
-
-.timeline-number{
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    color:#83a7b7;
+    font-size:13px;
 
     margin-bottom:8px;
 
 }
 
-.timeline-item p{
 
-    color:#bccbd1;
+.stat-bar{
 
-    line-height:1.7;
+    height:8px;
+
+    background:rgba(255,255,255,.07);
+
+    border-radius:20px;
+
+    overflow:hidden;
 
 }
 
 
-/* =========================
-   EVIDENCE
-========================= */
+.stat-fill{
 
-.evidence{
+    height:100%;
+
+    width:0;
+
+    background:#91b8c6;
+
+    transition:
+    width 1.5s cubic-bezier(.22,1,.36,1);
+
+}
+
+
+/* =========================================================
+   FUNNY CARDS
+========================================================= */
+
+.cards{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
+    repeat(auto-fit,minmax(210px,1fr));
 
     gap:18px;
 
@@ -583,23 +729,36 @@ body::after{
 
 }
 
-.evidence-card{
 
-    padding:25px;
+.card{
+
+    padding:27px;
 
     background:
-    rgba(255,255,255,.035);
+    rgba(255,255,255,.04);
 
     border:
-    1px solid rgba(190,215,225,.15);
+    1px solid rgba(190,215,225,.14);
 
-    border-radius:12px;
+    border-radius:14px;
 
     text-align:left;
 
+    transition:.35s;
+
 }
 
-.evidence-card small{
+
+.card:hover{
+
+    transform:
+    translateY(-6px)
+    rotate(.5deg);
+
+}
+
+
+.card small{
 
     color:#7fa5b5;
 
@@ -607,13 +766,15 @@ body::after{
 
 }
 
-.evidence-card h3{
 
-    margin:12px 0;
+.card h3{
+
+    margin:13px 0;
 
 }
 
-.evidence-card p{
+
+.card p{
 
     color:#afc0c7;
 
@@ -622,1355 +783,5 @@ body::after{
 }
 
 
-/* =========================
-   QUESTION
-========================= */
-
-.big-question{
-
-    font-size:
-    clamp(27px,6vw,50px);
-
-    line-height:1.5;
-
-    max-width:750px;
-
-    margin:40px auto;
-
-}
-
-.buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    margin-top:35px;
-
-}
-
-.btn{
-
-    padding:15px 27px;
-
-    border:
-    1px solid #7699a8;
-
-    background:transparent;
-
-    color:white;
-
-    border-radius:30px;
-
-    cursor:pointer;
-
-    transition:.35s;
-
-}
-
-.btn:hover{
-
-    background:#9dbbc6;
-
-    color:#071118;
-
-}
-
-
-/* =========================
-   RESPONSE
-========================= */
-
-.response{
-
-    max-width:650px;
-
-    margin:35px auto;
-
-    padding:30px;
-
-    background:
-    rgba(255,255,255,.04);
-
-    border-radius:15px;
-
-    animation:fadeUp 1s ease;
-
-}
-
-.response p{
-
-    color:#c9d7dc;
-
-    line-height:1.9;
-
-}
-
-
-/* =========================
-   FINAL CARD
-========================= */
-
-.final-card{
-
-    max-width:700px;
-
-    margin:auto;
-
-    padding:45px 30px;
-
-    border:
-    1px solid rgba(190,215,225,.2);
-
-    border-radius:18px;
-
-    background:
-    rgba(255,255,255,.04);
-
-}
-
-.status{
-
-    display:inline-block;
-
-    padding:8px 17px;
-
-    border:
-    1px solid #789aaa;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    margin-bottom:25px;
-
-}
-
-.signature{
-
-    margin-top:30px;
-
-    color:#829faa;
-
-    font-style:italic;
-
-}
-
-
-/* =========================
-   NEXT BUTTON
-========================= */
-
-.next{
-
-    margin-top:50px;
-
-    padding:14px 30px;
-
-    border:0;
-
-    border-radius:25px;
-
-    background:#d6e3e7;
-
-    color:#071118;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-.next:hover{
-
-    transform:translateY(-3px);
-
-}
-
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-@keyframes sceneIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(35px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:650px){
-
-    .characters{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .text{
-
-        font-size:16px;
-
-    }
-
-    .dialogue p{
-
-        font-size:17px;
-
-    }
-
-    .caption{
-
-        font-size:10px;
-
-        bottom:15px;
-
-        left:15px;
-
-    }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- FLOATING LIGHTS -->
-
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-
-
-<!-- =========================
-     INTRO
-========================= -->
-
-<section id="intro">
-
-<div class="intro-content">
-
-<div class="overline">
-A STORY THAT WAS NEVER PLANNED
-</div>
-
-<h1 class="intro-title">
-Ekta Golpo
-</h1>
-
-<p class="intro-sub">
-
-Kichu golpo likhe shuru hoy na.<br>
-
-Kichu manush-o plan kore life-e ashe na.<br><br>
-
-Ora just...<br>
-
-ekdin eshe pore.
-
-</p>
-
-<button class="enter" onclick="startStory()">
-
-ENTER THE STORY
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     STORY
-========================= -->
-
-<main id="story">
-
-
-<!-- SCENE 1 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 01
-</div>
-
-<h2 class="title">
-The First Frame
-</h2>
-
-<p class="text">
-
-Jodi kono golper beginning thake,
-tahole seta usually khub ordinary hoy.
-
-Kono dramatic music nei.
-
-Kono announcement nei.
-
-Just ekta normal din.
-
-Ekta normal conversation.
-
-Ar tarpor...
-
-kono ekjon aste aste
-golper important character hoye jay.
-
-</p>
-
-
-<!-- IMAGE 1 -->
-
-<div class="image-frame">
-
-<img src="images/scene1.jpg"
-alt="The beginning">
-
-<div class="image-overlay"></div>
-
-<div class="caption">
-
-FRAME 001 — THE BEGINNING
-
-</div>
-
-</div>
-
-
-<p class="text">
-
-Ei golper boy-tao bhabeni
-je eto kichu ekta simple conversation
-theke shuru hote pare.
-
-</p>
-
-<button class="next"
-onclick="goTo(1)">
-
-NEXT SCENE →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 2 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 02
-</div>
-
-<h2 class="title">
-Two Characters
-</h2>
-
-<p class="text">
-
-Ek dike ekjon chele.
-
-Beshi kichu special claim korbe na.
-
-Ar onno dike...
-
-tui.
-
-</p>
-
-
-<div class="characters">
-
-<div class="character">
-
-<div class="icon">
-🧑🏻
-</div>
-
-<h3>
-THE BOY
-</h3>
-
-<p>
-
-Ekjon je nijeke
-besh normal mone kore.
-
-Kintu kokhono kokhono
-nijer decision niyeo
-nijeyi confused hoy.
-
-</p>
-
-</div>
-
-
-<div class="character">
-
-<div class="icon">
-👩🏻
-</div>
-
-<h3>
-THE GIRL
-</h3>
-
-<p>
-
-Tui.
-
-Je hoyto bujhteo parish ni
-je kono ekta random golper
-main character hoye gechhish.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="dialogue">
-
-<div class="speaker">
-THE BOY
-</div>
-
-<p>
-
-"Ekta kotha bolbo?"
-
-</p>
-
-<br>
-
-<div class="speaker">
-THE GIRL
-</div>
-
-<p>
-
-"Bol."
-
-</p>
-
-<br>
-
-<div class="speaker">
-THE BOY
-</div>
-
-<p>
-
-"Actually... kichu na."
-
-</p>
-
-<br>
-
-<div class="speaker">
-THE GIRL
-</div>
-
-<p>
-
-"🙂"
-
-</p>
-
-</div>
-
-
-<button class="next"
-onclick="goTo(2)">
-
-THE STORY CONTINUES →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 3 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 03
-</div>
-
-<h2 class="title">
-The Conversations
-</h2>
-
-<p class="text">
-
-Kotha gulo initially
-khub simple chhilo.
-
-Ki korchhish?
-
-Ki cholche?
-
-Random kono topic.
-
-Abar random kono topic.
-
-Kono official agenda chhilo na.
-
-Tao somehow...
-
-kotha cholto.
-
-</p>
-
-
-<!-- IMAGE 2 -->
-
-<div class="image-frame">
-
-<img src="images/scene2.webp"
-alt="A moment in the story">
-
-<div class="image-overlay"></div>
-
-<div class="caption">
-
-FRAME 002 — SOME MOMENTS DON'T NEED AN EXPLANATION
-
-</div>
-
-</div>
-
-
-<p class="text">
-
-Interesting jinis holo...
-
-manush kokhon important hoye jay,
-eta usually tokhon bojha jay na.
-
-Bojha jay pore.
-
-</p>
-
-
-<button class="next"
-onclick="goTo(3)">
-
-NEXT →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 4 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 04
-</div>
-
-<h2 class="title">
-Then Something Changed
-</h2>
-
-<p class="text">
-
-Tarpor...
-
-kono ek somoy
-communication department
-ektu suspiciously quiet hoye gelo.
-
-Kono official announcement nei.
-
-Kono press conference nei.
-
-Just...
-
-kotha kom.
-
-</p>
-
-
-<div class="evidence">
-
-<div class="evidence-card">
-
-<small>
-EVIDENCE 001
-</small>
-
-<h3>
-Short Replies
-</h3>
-
-<p>
-
-Reply ache.
-
-Kintu reply-er size
-niye investigator-er
-kichu serious proshno ache.
-
-</p>
-
-</div>
-
-
-<div class="evidence-card">
-
-<small>
-EVIDENCE 002
-</small>
-
-<h3>
-Missing Conversations
-</h3>
-
-<p>
-
-Je random conversations
-ekshomoy easily cholto,
-tara ekhon suspiciously rare.
-
-</p>
-
-</div>
-
-
-<div class="evidence-card">
-
-<small>
-EVIDENCE 003
-</small>
-
-<h3>
-The Silence
-</h3>
-
-<p>
-
-Silence-er kono official
-explanation ekhono
-paowa jayni.
-
-</p>
-
-</div>
-
-
-<div class="evidence-card">
-
-<small>
-EVIDENCE 004
-</small>
-
-<h3>
-Everything Is Fine</h3>
-
-<p>
-
-Dui party-r possible statement:
-
-"Shob normal."
-
-Investigator:
-
-"Sure... 👀"
-
-</p>
-
-</div>
-
-</div>
-
-
-<button class="next"
-onclick="goTo(4)">
-
-OPEN INVESTIGATION →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 5 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 05
-</div>
-
-<h2 class="title">
-The Investigation
-</h2>
-
-<p class="text">
-
-Investigator team finally
-officially involved holo.
-
-Notebook khola holo.
-
-Evidence collect holo.
-
-Timeline banano holo.
-
-Problem holo...
-
-keu kichui bujhte parchhe na.
-
-</p>
-
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-number">
-PHASE 01
-</div>
-
-<p>
-
-Normal kotha-barta.
-
-Everything functioning normally.
-
-</p>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-number">
-PHASE 02
-</div>
-
-<p>
-
-Kothar poriman ektu kome gelo.
-
-Nobody noticed.
-
-</p>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-number">
-PHASE 03
-</div>
-
-<p>
-
-Aro ektu kome gelo.
-
-Still...
-
-"Everything is normal."
-
-</p>
-
-</div>
-
-
-<div class="timeline-item">
-
-<div class="timeline-number">
-PHASE 04
-</div>
-
-<p>
-
-Investigator confused.
-
-Very confused.
-
-</p>
-
-</div>
-
-</div>
-
-
-<p class="text">
-
-Possible suspects:
-
-<br><br>
-
-Studies.
-
-<br>
-
-Busy life.
-
-<br>
-
-Sleep.
-
-<br>
-
-Instagram.
-
-<br>
-
-Overthinking.
-
-<br>
-
-Random life events.
-
-<br>
-
-Life simply doing its thing.
-
-<br><br>
-
-<b>
-
-Or maybe nobody actually knows.
-
-</b>
-
-</p>
-
-
-<button class="next"
-onclick="goTo(5)">
-
-CLASSIFIED FILE →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 6 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 06
-</div>
-
-<h2 class="title">
-The Quiet Scene
-</h2>
-
-<p class="text">
-
-Shob golper majhe
-kichu scene thake
-jekhane dialogue kom.
-
-Kono explanation nei.
-
-Kono unnecessary drama nei.
-
-Just...
-
-dujon manush.
-
-Ekta moment.
-
-Ar kichu unsaid jinis.
-
-</p>
-
-
-<!-- IMAGE 3 -->
-
-<div class="image-frame">
-
-<img src="images/scene3.jpg"
-alt="A quiet moment">
-
-<div class="image-overlay"></div>
-
-<div class="caption">
-
-FRAME 003 — SOMETIMES SILENCE SAYS ENOUGH
-
-</div>
-
-</div>
-
-
-<p class="text">
-
-Maybe every story needs
-a scene like this.
-
-Jekhane kono answer
-force kore ber korte hoy na.
-
-</p>
-
-
-<button class="next"
-onclick="goTo(6)">
-
-ONE LAST QUESTION →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- SCENE 7 -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-EPISODE 07
-</div>
-
-<h2 class="title">
-Official Notice
-</h2>
-
-<div class="final-card">
-
-<div class="status">
-DEPARTMENT NOTICE
-</div>
-
-<p class="text">
-
-Department of
-Unnecessarily Complicated
-Conversations™
-ekta official notice issue koreche.
-
-<br><br>
-
-No complaint.
-
-<br>
-
-No interrogation.
-
-<br>
-
-No explanation demanded.
-
-<br><br>
-
-Just one small question.
-
-</p>
-
-</div>
-
-
-<div class="big-question">
-
-"Communication department-ta
-ki ekhono operational?"
-
-</div>
-
-
-<div class="buttons">
-
-<button class="btn"
-onclick="yesAnswer()">
-
-YES, OBVIOUSLY 😌
-
-</button>
-
-
-<button class="btn"
-onclick="noAnswer()">
-
-NO COMMENTS 🙂
-
-</button>
-
-</div>
-
-
-<div id="response"></div>
-
-
-<button class="next"
-onclick="goTo(7)">
-
-CONTINUE TO FINAL REPORT →
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- FINAL -->
-
-<section class="scene">
-
-<div class="scene-content">
-
-<div class="episode">
-FINAL EPISODE
-</div>
-
-<h2 class="title">
-Case Closed
-</h2>
-
-
-<div class="final-card">
-
-<div class="status">
-CASE STATUS: UNSOLVED
-</div>
-
-
-<p class="text">
-
-No arrests.
-
-<br>
-
-No accusations.
-
-<br>
-
-No dramatic conclusion.
-
-<br>
-
-No unnecessary emotional speech.
-
-<br><br>
-
-Just one investigator
-who still doesn't understand
-what exactly happened.
-
-</p>
-
-
-<br>
-
-
-<p class="text">
-
-Maybe nothing happened.
-
-<br><br>
-
-Maybe life just got busy.
-
-<br><br>
-
-Maybe conversations
-sometimes change.
-
-<br><br>
-
-Maybe some stories don't need
-a perfectly written explanation.
-
-</p>
-
-
-<br>
-
-
-<h2>
-
-But...
-
-the story was worth writing.
-
-</h2>
-
-
-<p class="signature">
-
-— An unnecessarily curious investigator
-
-</p>
-
-</div>
-
-
-<button class="next"
-onclick="finalNote()">
-
-OPEN FINAL NOTE →
-
-</button>
-
-
-<div id="final-note"></div>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-
-<script>
-
-
-/* =========================
-   START
-========================= */
-
-function startStory(){
-
-    document.getElementById("intro").style.display="none";
-
-    document.getElementById("story").style.display="block";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function goTo(number){
-
-    const scenes =
-    document.querySelectorAll(".scene");
-
-    if(scenes[number]){
-
-        scenes[number].scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
-
-}
-
-
-/* =========================
-   YES RESPONSE
-========================= */
-
-function yesAnswer(){
-
-    document.getElementById("response").innerHTML=`
-
-    <div class="response">
-
-    <p>
-
-    Excellent.
-
-    Communication department
-    officially declared operational. 😌
-
-    <br><br>
-
-    Civilization can continue peacefully.
-
-    <br><br>
-
-    Random conversations may resume
-    whenever they naturally feel like it.
-
-    </p>
-
-    </div>
-
-    `;
-
-}
-
-
-/* =========================
-   NO RESPONSE
-========================= */
-
-function noAnswer(){
-
-    document.getElementById("response").innerHTML=`
-
-    <div class="response">
-
-    <p>
-
-    Respectfully noted.
-
-    <br><br>
-
-    However...
-
-    tui nijer hate
-    "NO COMMENTS" button-e
-    click korechhish.
-
-    <br><br>
-
-    Investigator-er chokhe
-    eta ektu suspicious. 👀
-
-    </p>
-
-    </div>
-
-    `;
-
-}
-
-
-/* =========================
-   FINAL NOTE
-========================= */
-
-function finalNote(){
-
-    document.getElementById("final-note").innerHTML=`
-
-    <div class="dialogue">
-
-    <div class="speaker">
-    P.S.
-    </div>
-
-    <p>
-
-    Ei puro investigation-ta
-    actually ekjon unqualified investigator
-    onek free time peyechhilo bole hoyeche.
-
-    <br><br>
-
-    Tai kono serious conclusion
-    expect korish na.
-
-    <br><br>
-
-    Case officially closed.
-
-    <br><br>
-
-    Until the next random conversation.
-
-    </p>
-
-    </div>
-
-    `;
-
-}
-
-</script>
-
-
-</body>
-</html>
+/* =========================================================
+   D
