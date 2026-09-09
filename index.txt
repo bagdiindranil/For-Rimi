@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Case File 001 🔍</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#eef2f7,#ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#333;
+}
+
+.container{
+    width:90%;
+    max-width:600px;
+    padding:25px;
+    animation:fadeIn .6s ease;
+}
+
+.case-box{
+    background:white;
+    border-radius:20px;
+    padding:30px 25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.10);
+    border:1px solid #e5e5e5;
+}
+
+.badge{
+    display:inline-block;
+    background:#222;
+    color:white;
+    padding:7px 15px;
+    border-radius:20px;
+    font-size:13px;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+h1{
+    font-size:2rem;
+    color:#222;
+    margin-bottom:18px;
+}
+
+h2{
+    font-size:1.5rem;
+    margin-bottom:20px;
+    color:#222;
+}
+
+p{
+    font-size:1.05rem;
+    line-height:1.7;
+    color:#555;
+}
+
+.highlight{
+    color:#222;
+    font-weight:bold;
+}
+
+.red{
+    color:#e63946;
+    font-weight:bold;
+}
+
+.evidence{
+    text-align:left;
+    background:#f7f7f7;
+    border-radius:12px;
+    padding:18px;
+    margin:20px 0;
+    line-height:1.9;
+}
+
+button{
+    border:none;
+    padding:13px 25px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    margin:8px;
+    transition:.25s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.primary{
+    background:#222;
+    color:white;
+}
+
+.secondary{
+    background:#e9ecef;
+    color:#333;
+}
+
+.success{
+    background:#2a9d8f;
+    color:white;
+}
+
+.warning{
+    background:#f4a261;
+    color:white;
+}
+
+.stamp{
+    display:inline-block;
+    border:3px solid #e63946;
+    color:#e63946;
+    padding:8px 14px;
+    font-weight:bold;
+    transform:rotate(-4deg);
+    margin:20px 0;
+    border-radius:5px;
+}
+
+.small{
+    font-size:.9rem;
+    color:#777;
+}
+
+.emoji{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.hidden{
+    display:none;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:500px){
+
+    .container{
+        width:94%;
+        padding:15px;
+    }
+
+    .case-box{
+        padding:25px 18px;
+    }
+
+    h1{
+        font-size:1.6rem;
+    }
+
+    h2{
+        font-size:1.3rem;
+    }
+
+    p{
+        font-size:.98rem;
+    }
+
+    button{
+        font-size:15px;
+        padding:12px 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="case-box" id="app">
+
+<div class="badge">
+CASE FILE 001
+</div>
+
+<div class="emoji">
+🕵️‍♂️
+</div>
+
+<h1>
+The Mysterious Communication Gap
+</h1>
+
+<p>
+<strong>Subject:</strong> A Certain Someone
+<br>
+<strong>Incident:</strong> Unexpected Reduction in Communication
+<br>
+<strong>Status:</strong> Under Investigation 🔍
+</p>
+
+<br>
+
+<p>
+Two people who once had plenty of completely unnecessary conversations...
+</p>
+
+<br>
+
+<p class="highlight">
+Suddenly became very efficient at NOT having conversations. 🙂
+</p>
+
+<br>
+
+<p>
+No accusations.<br>
+No emotional speeches.<br>
+No unnecessary drama.
+</p>
+
+<br>
+
+<p>
+Just a small investigation to understand this highly suspicious situation.
+</p>
+
+<br>
+
+<button class="primary" onclick="showTimeline()">
+BEGIN INVESTIGATION →
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function showTimeline(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="badge">
+INVESTIGATION — 01
+</div>
+
+<div class="emoji">
+📋
+</div>
+
+<h2>
+Initial Investigation
+</h2>
+
+<div class="evidence">
+
+<strong>Phase 1:</strong><br>
+Talking normally.<br>
+Random conversations.<br>
+Unnecessary discussions. 😂
+
+<hr>
+
+<strong>Phase 2:</strong><br>
+Talking a little less.
+
+<hr>
+
+<strong>Phase 3:</strong><br>
+Talking even less.
+
+<hr>
+
+<strong>Phase 4:</strong><br>
+Both parties:
+<br>
+<em>"Everything is completely normal." 🙂</em>
+
+</div>
+
+<p>
+<strong>Investigators:</strong>
+<br>
+"Hmm... interesting." 👀
+</p>
+
+<br>
+
+<p class="highlight">
+Something changed.
+<br>
+But nobody appears to have informed the investigation department. 😂
+</p>
+
+<br>
+
+<button class="primary" onclick="showEvidence()">
+CHECK THE EVIDENCE 🔍
+</button>
+
+`;
+
+}
+
+function showEvidence(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="badge">
+INVESTIGATION — 02
+</div>
+
+<div class="emoji">
+🔎
+</div>
+
+<h2>
+Possible Explanations
+</h2>
+
+<p>
+After extensive research, the department has identified several suspects:
+</p>
+
+<div class="evidence">
+
+📚 Studies<br>
+😴 Sleep schedule<br>
+📱 Instagram<br>
+🧠 Overthinking<br>
+💼 Life being unnecessarily busy<br>
+🌍 Life simply doing its thing
+
+</div>
+
+<p>
+And one highly classified possibility:
+</p>
+
+<br>
+
+<p class="highlight">
+Nobody actually knows what happened. 😂
+</p>
+
+<br>
+
+<p>
+At this point, the investigation team has officially admitted:
+</p>
+
+<br>
+
+<p class="red">
+"We are also confused." 🙂
+</p>
+
+<br>
+
+<button class="primary" onclick="showNotice()">
+ASK THE SUBJECT 😏
+</button>
+
+`;
+
+}
+
+function showNotice(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="badge">
+OFFICIAL NOTICE
+</div>
+
+<div class="emoji">
+📢
+</div>
+
+<h2>
+Department of Unnecessarily Complicated Conversations™
+</h2>
+
+<p>
+This department has officially noticed a
+<strong>temporary shortage of random conversations.</strong>
+</p>
+
+<br>
+
+<p>
+The situation has been carefully observed.
+</p>
+
+<br>
+
+<p>
+No complaint has been filed.<br>
+No explanation has been demanded.<br>
+No interrogation will take place. 😂
+</p>
+
+<br>
+
+<p class="highlight">
+The department would simply like to confirm:
+</p>
+
+<br>
+
+<h2>
+Is the communication department still operational? 🙂
+</h2>
+
+<button class="success" onclick="yesResponse()">
+YES, OBVIOUSLY 😌
+</button>
+
+<button class="secondary" onclick="noResponse()">
+NO COMMENTS 🙂
+</button>
+
+`;
+
+}
+
+function yesResponse(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="emoji">
+✅
+</div>
+
+<div class="badge">
+RESPONSE RECORDED
+</div>
+
+<h2>
+Excellent.
+</h2>
+
+<p>
+The department is pleased to announce that
+<strong>civilisation may continue.</strong> 😂
+</p>
+
+<br>
+
+<p>
+No further action is required.
+</p>
+
+<br>
+
+<p>
+You may return to your regularly scheduled life.
+</p>
+
+<br>
+
+<p class="highlight">
+Random conversations may resume whenever
+the concerned department feels like it. 🙂
+</p>
+
+<br>
+
+<button class="primary" onclick="closeCase()">
+CLOSE CASE 🔐
+</button>
+
+`;
+
+}
+
+function noResponse(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="emoji">
+🤐
+</div>
+
+<div class="badge">
+RESPONSE RECORDED
+</div>
+
+<h2>
+No Comments.
+</h2>
+
+<p>
+The department respects your constitutional right
+to provide absolutely no useful information. 😂
+</p>
+
+<br>
+
+<p>
+However, we would like to point out one small thing...
+</p>
+
+<br>
+
+<h2>
+You still clicked the button. 👀
+</h2>
+
+<br>
+
+<p class="red">
+Suspicious.
+<br>
+Very suspicious. 🙂
+</p>
+
+<br>
+
+<button class="primary" onclick="closeCase()">
+CLOSE CASE 🔐
+</button>
+
+`;
+
+}
+
+function closeCase(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="emoji">
+📄
+</div>
+
+<div class="badge">
+FINAL INVESTIGATION REPORT
+</div>
+
+<h2>
+CASE CLOSED
+</h2>
+
+<div class="evidence">
+
+<strong>Case:</strong>
+The Great Communication Gap
+<br><br>
+
+<strong>Investigation duration:</strong>
+Classified 🤐
+<br><br>
+
+<strong>Useful evidence found:</strong>
+Almost none 😂
+<br><br>
+
+<strong>Suspects arrested:</strong>
+0
+<br><br>
+
+<strong>Explanations obtained:</strong>
+0
+<br><br>
+
+<strong>Investigators confused:</strong>
+100%
+
+</div>
+
+<div class="stamp">
+NOTHING TO INVESTIGATE
+</div>
+
+<p>
+Sometimes people get busy.
+<br>
+Sometimes life gets complicated.
+<br>
+Sometimes conversations simply become quieter for a while.
+</p>
+
+<br>
+
+<p class="highlight">
+No big deal. 🙂
+</p>
+
+<br>
+
+<p>
+Normal operations may resume whenever they naturally do.
+</p>
+
+<br>
+
+<p class="small">
+No deadline. No pressure. No follow-up questionnaire. 😂
+</p>
+
+<br>
+
+<button class="primary" onclick="finalMessage()">
+RETURN TO NORMAL LIFE →
+</button>
+
+`;
+
+}
+
+function finalMessage(){
+
+document.getElementById("app").innerHTML=`
+
+<div class="emoji">
+🕵️‍♂️
+</div>
+
+<h2>
+Thank you for cooperating.
+</h2>
+
+<p>
+The investigation has officially concluded.
+</p>
+
+<br>
+
+<p>
+Please continue pretending
+this was a completely normal website. 🙂
+</p>
+
+<br>
+
+<p class="small">
+P.S. This entire investigation was conducted
+by a completely unqualified investigator
+who clearly had too much free time. 😂
+</p>
+
+<br>
+
+<div class="stamp">
+CASE CLOSED 🔐
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
